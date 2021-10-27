@@ -1,0 +1,100 @@
+{
+    "codex": [
+        {
+            "label": "Adepta Sororitas",
+            "value": "Adepta Sororitas"
+        },
+        {
+            "label": "Blood Angels",
+            "value": "Blood Angels"
+        },
+        {
+            "label": "Dark Angels",
+            "value": "Dark Angels"
+        },
+        {
+            "label": "Deathwatch",
+            "value": "Deathwatch"
+        },
+        {
+            "label": "Grey Knights",
+            "value": "Grey Knights"
+        },
+        {
+            "label": "Space Marines",
+            "value": "Space Marines"
+        },
+        {
+            "label": "Space Wolfs",
+            "value": "Space Wolfs"
+        },
+        {
+            "label": "Adeptus Custodes",
+            "value": "Adeptus Custodes"
+        },
+        {
+            "label": "Adeptus Mechanicus",
+            "value": "Adeptus Mechanicus"
+        },
+        {
+            "label": "Aeldari",
+            "value": "Aeldari"
+        },
+        {
+            "label": "Astra Militarum",
+            "value": "Astra Militarum"
+        },
+        {
+            "label": "Chaos Daemons",
+            "value": "Chaos Daemons"
+        },
+        {
+            "label": "Chaos Knights",
+            "value": "Chaos Knights"
+        },
+        {
+            "label": "Drukhari",
+            "value": "Drukhari"
+        },
+        {
+            "label": "Chaos Space Marines",
+            "value": "Chaos Space Marines"
+        },
+        {
+            "label": "Death Guard",
+            "value": "Death Guard"
+        },
+        {
+            "label": "Thousand Sons",
+            "value": "Thousand Sons"
+        },
+        {
+            "label": "Genestealer Cults",
+            "value": "Genestealer Cults"
+        },
+        {
+            "label": "Harlequins",
+            "value": "Harlequins"
+        },
+        {
+            "label": "Imperial Knights",
+            "value": "Imperial Knights"
+        },
+        {
+            "label": "Necrons",
+            "value": "Necrons"
+        },
+        {
+            "label": "Orks",
+            "value": "Orks"
+        },
+        {
+            "label": "T'au",
+            "value": "T'au"
+        },
+        {
+            "label": "Tyranids",
+            "value": "Tyranids"
+        }
+    ]
+}

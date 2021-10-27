@@ -3,7 +3,6 @@
     "name": "WH40k-Companion",
     "slug": "WH40k-Companion",
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",

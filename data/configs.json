@@ -1,0 +1,13 @@
+{
+    "modes": {
+        "1": "1 vs. 1",
+        "2": "2 vs. 1",
+        "3": "2 vs. 2"
+    },
+    "battleSize": {
+        "combat": "Combat Patrol (max. 500 points)",
+        "incursion": "Incursion (max. 1000 points)",
+        "strike": "Strike Force (max. 2000 points)",
+        "onslaught": "Onslaught (max. 3000 points)"
+    }
+}
