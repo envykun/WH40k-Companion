@@ -1,17 +1,26 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { IconButton, Surface } from "react-native-paper";
-import { PrimaryPoints } from "../../screens/GameScreen";
+import { IconButton, Surface, TextInput } from "react-native-paper";
+import { Points } from "../../screens/GameScreen";
 
 interface Props {
-  primaryCount: PrimaryPoints;
+  primaryCount: Points;
   primaryDescription: string;
   primaryTitle: string;
   edition: string;
+  hasInput?: boolean;
+  getPrimaryCount: any;
 }
 
-const PrimaryPaper = ({ primaryCount, primaryDescription, primaryTitle, edition }: Props) => {
+const PrimaryPaper = ({
+  primaryCount,
+  primaryDescription,
+  primaryTitle,
+  edition,
+  hasInput,
+  getPrimaryCount,
+}: Props) => {
   return (
     <Surface style={styles.surface}>
       <View style={styles.header}>
@@ -19,7 +28,9 @@ const PrimaryPaper = ({ primaryCount, primaryDescription, primaryTitle, edition 
         <View style={{ flexDirection: "row", flex: 1, position: "relative" }}>
           <Text style={styles.headerTextMiddle}>{primaryTitle}</Text>
           <IconButton
-            icon={() => <Ionicons name="ios-information-circle" size={32} color="white" />}
+            icon={() => (
+              <Ionicons name="ios-information-circle" size={32} color="white" />
+            )}
             onPress={() => console.log("Show Info")}
             style={{ position: "absolute", top: -8, right: 40 }}
           />
@@ -30,10 +41,61 @@ const PrimaryPaper = ({ primaryCount, primaryDescription, primaryTitle, edition 
         <View style={styles.descriptionContainer}>
           <Text style={styles.description}>{primaryDescription}</Text>
         </View>
-        <View style={styles.points}>
-          <Text style={styles.pointText}>{primaryCount.teamOne} / 45</Text>
-          <Text style={styles.pointText}>{primaryCount.teamTwo} / 45</Text>
-        </View>
+        {hasInput ? (
+          <View style={styles.points}>
+            <View style={{ flexDirection: "row" }}>
+              <TextInput
+                mode="outlined"
+                value={
+                  primaryCount.teamOne ? primaryCount.teamOne.toString() : ""
+                }
+                keyboardType="number-pad"
+                onChangeText={(text) =>
+                  getPrimaryCount((prev: Points) => ({
+                    ...prev,
+                    teamOne: parseInt(text),
+                  }))
+                }
+                style={{
+                  width: 50,
+                  height: 40,
+                  paddingTop: 0,
+                  paddingBottom: 6,
+                  backgroundColor: "#C4C4C4",
+                }}
+              />
+              <Text style={styles.pointText}> / 45</Text>
+            </View>
+            <View style={{ flexDirection: "row" }}>
+              <TextInput
+                mode="outlined"
+                value={
+                  primaryCount.teamTwo ? primaryCount.teamTwo.toString() : ""
+                }
+                keyboardType="number-pad"
+                onChangeText={(text) =>
+                  getPrimaryCount((prev: Points) => ({
+                    ...prev,
+                    teamTwo: parseInt(text),
+                  }))
+                }
+                style={{
+                  width: 50,
+                  height: 40,
+                  paddingTop: 0,
+                  paddingBottom: 6,
+                  backgroundColor: "#C4C4C4",
+                }}
+              />
+              <Text style={styles.pointText}> / 45</Text>
+            </View>
+          </View>
+        ) : (
+          <View style={styles.points}>
+            <Text style={styles.pointText}>{primaryCount.teamOne} / 45</Text>
+            <Text style={styles.pointText}>{primaryCount.teamTwo} / 45</Text>
+          </View>
+        )}
       </View>
     </Surface>
   );

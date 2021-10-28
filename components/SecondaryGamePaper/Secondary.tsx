@@ -19,17 +19,26 @@ const Secondary = ({ title, count, hasInput, getValue }: Props) => {
         </View>
         <View>
           <IconButton
-            icon={() => <Ionicons name="ios-information-circle" size={32} color="black" />}
+            icon={() => (
+              <Ionicons name="ios-information-circle" size={32} color="black" />
+            )}
             onPress={() => console.log("Show Info")}
           />
         </View>
       </Surface>
       <View style={styles.countWrapper}>
         {hasInput ? (
-          <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <TextInput
               mode="outlined"
               value={count}
+              keyboardType="number-pad"
               onChangeText={(text) => getValue(text)}
               style={{
                 width: 50,

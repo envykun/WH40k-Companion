@@ -14,6 +14,12 @@ interface Props {
   getValueFour: any;
   getValueFive: any;
   getValueSix: any;
+  valueOne: string;
+  valueTwo: string;
+  valueThree: string;
+  valueFour: string;
+  valueFive: string;
+  valueSix: string;
 }
 
 const SecondaryGamePaper = ({
@@ -25,6 +31,12 @@ const SecondaryGamePaper = ({
   getValueFour,
   getValueFive,
   getValueSix,
+  valueOne,
+  valueTwo,
+  valueThree,
+  valueFour,
+  valueFive,
+  valueSix,
 }: Props) => {
   return (
     <Surface style={styles.surface}>
@@ -33,14 +45,44 @@ const SecondaryGamePaper = ({
       </View>
       <View style={styles.body}>
         <View style={styles.teamOne}>
-          <Secondary title={secondary?.teamOne[0].name} count={"0"} hasInput={hasInput} getValue={getValueOne} />
-          <Secondary title={secondary?.teamOne[1].name} count={"2"} hasInput={hasInput} getValue={getValueTwo} />
-          <Secondary title={secondary?.teamOne[2].name} count={""} hasInput={hasInput} getValue={getValueThree} />
+          <Secondary
+            title={secondary?.teamOne[0].name}
+            count={valueOne}
+            hasInput={hasInput}
+            getValue={getValueOne}
+          />
+          <Secondary
+            title={secondary?.teamOne[1].name}
+            count={valueTwo}
+            hasInput={hasInput}
+            getValue={getValueTwo}
+          />
+          <Secondary
+            title={secondary?.teamOne[2].name}
+            count={valueThree}
+            hasInput={hasInput}
+            getValue={getValueThree}
+          />
         </View>
         <View style={styles.teamTwo}>
-          <Secondary title={secondary?.teamTwo[0].name} count={""} hasInput={hasInput} getValue={getValueFour} />
-          <Secondary title={secondary?.teamTwo[1].name} count={""} hasInput={hasInput} getValue={getValueFive} />
-          <Secondary title={secondary?.teamTwo[2].name} count={""} hasInput={hasInput} getValue={getValueSix} />
+          <Secondary
+            title={secondary?.teamTwo[0].name}
+            count={valueFour}
+            hasInput={hasInput}
+            getValue={getValueFour}
+          />
+          <Secondary
+            title={secondary?.teamTwo[1].name}
+            count={valueFive}
+            hasInput={hasInput}
+            getValue={getValueFive}
+          />
+          <Secondary
+            title={secondary?.teamTwo[2].name}
+            count={valueSix}
+            hasInput={hasInput}
+            getValue={getValueSix}
+          />
         </View>
       </View>
     </Surface>

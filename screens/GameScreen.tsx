@@ -16,7 +16,7 @@ export interface SecondaryPointsProps {
   teamTwo: Array<{ name: string; count: number }>;
 }
 
-export interface PrimaryPoints {
+export interface Points {
   teamOne: number;
   teamTwo: number;
 }
@@ -24,16 +24,34 @@ export interface PrimaryPoints {
 const GameScreen = ({ route }: Props) => {
   const primary = route.params.primary;
   const secondary: SecondaryPointsProps = route.params.secondary;
-  const playerOneName = route.params.teamOne ? route.params.teamOne.playerOne.name : "";
-  const playerOneCodex = route.params.teamOne ? route.params.teamOne.playerOne.codex : "";
-  const playerOneCP = route.params.teamOne ? route.params.teamOne.playerOne.cp : 0;
-  const playerTwoName = route.params.teamTwo ? route.params.teamTwo.playerOne.name : "";
-  const playerTwoCodex = route.params.teamTwo ? route.params.teamTwo.playerOne.codex : "";
-  const playerTwoCP = route.params.teamTwo ? route.params.teamTwo.playerOne.cp : 0;
+  const playerOneName = route.params.teamOne
+    ? route.params.teamOne.playerOne.name
+    : "";
+  const playerOneCodex = route.params.teamOne
+    ? route.params.teamOne.playerOne.codex
+    : "";
+  const playerOneCP = route.params.teamOne
+    ? route.params.teamOne.playerOne.cp
+    : 0;
+  const playerTwoName = route.params.teamTwo
+    ? route.params.teamTwo.playerOne.name
+    : "";
+  const playerTwoCodex = route.params.teamTwo
+    ? route.params.teamTwo.playerOne.codex
+    : "";
+  const playerTwoCP = route.params.teamTwo
+    ? route.params.teamTwo.playerOne.cp
+    : 0;
 
   const [battleRound, setBattleRound] = useState(0);
-  const [primaryPoints, setPrimaryPoints] = useState({ teamOne: 0, teamTwo: 0 });
-  const [secondaryPoints, setSecondaryPoints] = useState(secondary);
+  const [primaryPoints, setPrimaryPoints] = useState<Points>({
+    teamOne: 0,
+    teamTwo: 0,
+  });
+  const [secondaryPoints, setSecondaryPoints] = useState<Points>({
+    teamOne: 0,
+    teamTwo: 0,
+  });
   const [teamOneVP, setTeamOneVP] = useState(0);
   const [teamTwoVP, setTeamTwoVP] = useState(0);
 
@@ -49,7 +67,9 @@ const GameScreen = ({ route }: Props) => {
 
   useEffect(() => {
     console.log("Secondary", secondaryPoints);
-  }, [secondaryPoints]);
+    setTeamOneVP(primaryPoints.teamOne + secondaryPoints.teamOne);
+    setTeamTwoVP(primaryPoints.teamTwo + secondaryPoints.teamTwo);
+  }, [primaryPoints, secondaryPoints]);
 
   function handleNextTurn() {}
 
@@ -58,20 +78,42 @@ const GameScreen = ({ route }: Props) => {
       <View style={styles.overview}>
         <View style={styles.overviewInner}>
           <View style={styles.playerTag}>
-            <PlayerTag playerName={playerOneName} codex={playerOneCodex} vp={teamOneVP} active={true} />
+            <PlayerTag
+              playerName={playerOneName}
+              codex={playerOneCodex}
+              vp={teamOneVP}
+              active={true}
+            />
           </View>
           <View style={styles.battleRoundContainer}>
             <View style={styles.timer}>
-              <Text style={{ fontSize: 24, color: "#fff" }}>{new Date(timer * 1000).toISOString().substr(11, 8)}</Text>
+              <Text style={{ fontSize: 24, color: "#fff" }}>
+                {new Date(timer * 1000).toISOString().substr(11, 8)}
+              </Text>
             </View>
             <Surface style={styles.battleRound}>
-              <Text style={{ fontSize: 72, lineHeight: 74, textAlign: "center", marginBottom: -10 }}>{battleRound}</Text>
+              <Text
+                style={{
+                  fontSize: 72,
+                  lineHeight: 74,
+                  textAlign: "center",
+                  marginBottom: -10,
+                }}
+              >
+                {battleRound}
+              </Text>
               <Text style={{}}>Battle</Text>
               <Text>Round</Text>
             </Surface>
           </View>
           <View style={styles.playerTag}>
-            <PlayerTag playerName={playerTwoName} codex={playerTwoCodex} vp={teamTwoVP} reverse active={false} />
+            <PlayerTag
+              playerName={playerTwoName}
+              codex={playerTwoCodex}
+              vp={teamTwoVP}
+              reverse
+              active={false}
+            />
           </View>
         </View>
         <View style={styles.overviewInner}>
@@ -79,7 +121,14 @@ const GameScreen = ({ route }: Props) => {
             <CPCounter initialValue={playerOneCP} />
           </View>
           <View style={styles.currentCodex}>
-            <Surface style={{ backgroundColor: "#C4C4C4", paddingVertical: 4, paddingHorizontal: 16, borderRadius: 4 }}>
+            <Surface
+              style={{
+                backgroundColor: "#C4C4C4",
+                paddingVertical: 4,
+                paddingHorizontal: 16,
+                borderRadius: 4,
+              }}
+            >
               <Text>Current Turn Codex</Text>
             </Surface>
           </View>
@@ -93,14 +142,19 @@ const GameScreen = ({ route }: Props) => {
           primaryCount={primaryPoints}
           primaryTitle={primary.title}
           primaryDescription={primary.briefing}
+          getPrimaryPoints={setPrimaryPoints}
           edition={edition}
-          secondary={secondaryPoints}
+          secondary={secondary}
           getSecondaryPoints={setSecondaryPoints}
           handleNextTurn
         />
       </View>
       <View style={styles.button}>
-        <Button mode="contained" color="#C7B300" onPress={() => handleNextTurn()}>
+        <Button
+          mode="contained"
+          color="#C7B300"
+          onPress={() => handleNextTurn()}
+        >
           Next Turn
         </Button>
       </View>
