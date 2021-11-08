@@ -1,0 +1,38 @@
+{
+  "missions": {
+    "incursion": [
+      {
+        "title": "Crossfire",
+        "briefing": "Enemy forces are massing in the area, seeking to secure the battlefield. A direct assault against them may result in unacceptable casualties, but victory can be assured by outflanking the foe and catching them in a deadly crossfire.",
+        "rules": "Crossfire: When resolving attacks against target units that are within 9\" of the centre of the battlefield, those attacks ignore the benefits of cover provided you can satisfy at least one of the following conditions: 1) You control both objective markers labelled A and the attacking model’s unit is in range of an objective marker labelled A. 2) You control both objective markers labelled B and the attacking model’s unit is in range of an objective marker labelled B.",
+        "primary": {
+          "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+          "keyword": "Take and Hold (Progressive):",
+          "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+          "objectivelist": [
+            "They control one or more objective markers.",
+            "They control two or more objective markers.",
+            "They control more objective markers than their opponent controls."
+          ],
+          "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+        },
+        "secondary": {
+          "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Outflank (see below).",
+          "keyword": "Outflank (Progressive):",
+          "description": "At the end of your Command phase, you score 3 victory points if you control both of the objective markers labelled A. Score 5 victory points instead if, at the end of your Command phase, you control both of the objective markers labelled A and there is at least one enemy unit within 9\" of the centre of the battlefield. This secondary objective cannot be scored in the first battle round."
+        }
+      },
+      {}
+    ],
+    "strikeForce": [{}]
+  },
+  "secondaries": [
+    {
+      "title": "ENGAGE ON ALL FRONTS",
+      "type": "Progressive Objective",
+      "description": "Score 2 victory points at the end of your turn if you have one or more units from your army wholly within three different table quarters, and those units are all more than 6\" from the centre of the battlefield. Score 3 victory points instead if you have one or more units from your army wholly within each table quarter, and those units are all more than 6\" from the centre of the battlefield.",
+      "category": "BATTLEFIELD SUPREMACY"
+    },
+    {}
+  ]
+}

@@ -25,7 +25,7 @@ const PrimaryPaper = ({
     <Surface style={styles.surface}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Primary</Text>
-        <View style={{ flexDirection: "row", flex: 1, position: "relative" }}>
+        <View style={{ flexDirection: "row", position: "relative" }}>
           <Text style={styles.headerTextMiddle}>{primaryTitle}</Text>
           <IconButton
             icon={() => (
@@ -120,7 +120,6 @@ const styles = StyleSheet.create({
   },
   headerTextMiddle: {
     color: "#fff",
-    flex: 1,
     textAlign: "center",
     fontSize: 26,
   },

@@ -1,6 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Button, Divider, HelperText, Menu, Provider, Surface } from "react-native-paper";
+import {
+  Button,
+  Divider,
+  HelperText,
+  Menu,
+  Provider,
+  Surface,
+} from "react-native-paper";
 import Dropdown from "../Dropdown/Dropdown";
 
 interface ConfigPaperProps {
@@ -8,6 +15,8 @@ interface ConfigPaperProps {
   data: Array<DataListItem>;
   getValue: any;
   hasError: boolean;
+  zIndex: number;
+  zIndexReverse: number;
 }
 
 export interface DataListItem {
@@ -15,11 +24,24 @@ export interface DataListItem {
   value: string;
 }
 
-const ConfigPaper = ({ title, data, getValue, hasError }: ConfigPaperProps) => {
+const ConfigPaper = ({
+  title,
+  data,
+  getValue,
+  hasError,
+  zIndex,
+  zIndexReverse,
+}: ConfigPaperProps) => {
   return (
     <Surface style={styles.surface}>
       <Text style={styles.text}>{title}</Text>
-      <Dropdown list={data} label={title} getValue={getValue} />
+      <Dropdown
+        list={data}
+        label={title}
+        getValue={getValue}
+        zIndex={zIndex}
+        zIndexReverse={zIndexReverse}
+      />
       {hasError && (
         <HelperText type="error" visible={hasError}>
           * This field is required

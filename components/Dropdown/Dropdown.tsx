@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button, Divider, Menu, Provider } from "react-native-paper";
 import DropDown from "react-native-paper-dropdown";
+import DropDownPicker from "react-native-dropdown-picker";
 
 interface Props {
   label: string;
   list: any;
   getValue: any;
+  zIndex: number;
+  zIndexReverse: number;
 }
 
-const Dropdown = ({ label, list, getValue }: Props) => {
+const Dropdown = ({ label, list, getValue, zIndex, zIndexReverse }: Props) => {
   const [visible, setVisible] = React.useState(false);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(null);
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -21,17 +24,14 @@ const Dropdown = ({ label, list, getValue }: Props) => {
   }, [value]);
 
   return (
-    <DropDown
-      label={label}
-      mode="outlined"
-      visible={visible}
-      showDropDown={() => openMenu()}
-      onDismiss={() => closeMenu()}
+    <DropDownPicker
+      open={visible}
       value={value}
+      setOpen={setVisible}
       setValue={setValue}
-      list={list}
-      dropDownItemTextStyle={styles.textStyle}
-      dropDownItemStyle={{ width: "100%" }}
+      items={list}
+      zIndex={zIndex}
+      zIndexInverse={zIndexReverse}
     />
   );
 };
