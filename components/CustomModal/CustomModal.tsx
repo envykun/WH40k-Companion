@@ -11,11 +11,7 @@ interface Props {
 const CustomModal = ({ visible, hideModal, children }: Props) => {
   return (
     <Portal>
-      <Modal
-        visible={visible}
-        onDismiss={hideModal}
-        contentContainerStyle={styles.containerStyle}
-      >
+      <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={styles.containerStyle}>
         {children}
       </Modal>
     </Portal>
@@ -26,8 +22,6 @@ export default CustomModal;
 
 const styles = StyleSheet.create({
   containerStyle: {
-    backgroundColor: "white",
-    padding: 20,
-    marginHorizontal: 20,
+    marginVertical: -45,
   },
 });

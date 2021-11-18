@@ -6,12 +6,14 @@ import { Images } from "../../constants/Images";
 interface Props {
   reverse?: boolean;
   playerName: string;
+  playerNameTwo?: string;
   vp: number;
   codex: string;
+  codexTwo?: string;
   active: boolean;
 }
 
-const PlayerTag = ({ reverse, playerName, vp, codex, active }: Props) => {
+const PlayerTag = ({ reverse, playerName, playerNameTwo, vp, codex, codexTwo, active }: Props) => {
   return (
     <View
       style={
@@ -27,9 +29,16 @@ const PlayerTag = ({ reverse, playerName, vp, codex, active }: Props) => {
       <View style={styles.naming}>
         <Surface style={reverse ? styles.nameReverse : styles.name}>
           <Text style={{ fontSize: 26, color: "#fff" }}>{playerName}</Text>
+          {playerNameTwo && <Text style={{ fontSize: 26, color: "#fff" }}>{playerNameTwo}</Text>}
         </Surface>
         <Surface style={styles.codex}>
-          <Text style={{ fontSize: 20 }}>{codex}</Text>
+          {codexTwo ? (
+            <Text style={{ fontSize: 20 }}>
+              {codex} | {codexTwo}
+            </Text>
+          ) : (
+            <Text style={{ fontSize: 20 }}>{codex}</Text>
+          )}
         </Surface>
       </View>
       <Surface style={reverse ? styles.vpReverse : styles.vp}>

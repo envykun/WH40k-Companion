@@ -1,37 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Button, Divider, Menu, Provider } from "react-native-paper";
 import DropDown from "react-native-paper-dropdown";
-import DropDownPicker from "react-native-dropdown-picker";
 
 interface Props {
   label: string;
   list: any;
   getValue: any;
-  zIndex: number;
-  zIndexReverse: number;
+  zIndex?: number;
+  zIndexReverse?: number;
+  multiSelect?: boolean;
 }
 
-const Dropdown = ({ label, list, getValue, zIndex, zIndexReverse }: Props) => {
-  const [visible, setVisible] = React.useState(false);
+const Dropdown = ({ label, list, getValue, multiSelect }: Props) => {
   const [value, setValue] = useState(null);
-
-  const openMenu = () => setVisible(true);
-  const closeMenu = () => setVisible(false);
+  const [multiple, setMultiple] = useState("");
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    getValue(value);
-  }, [value]);
+    multiSelect ? getValue(multiple) : getValue(value);
+  }, [value, multiple]);
 
-  return (
-    <DropDownPicker
-      open={visible}
+  return multiSelect ? (
+    <DropDown
+      label={label}
+      mode={"outlined"}
+      visible={visible}
+      showDropDown={() => setVisible(true)}
+      onDismiss={() => setVisible(false)}
+      value={multiple}
+      setValue={setMultiple}
+      list={list}
+      dropDownItemTextStyle={{ width: "200%" }}
+      dropDownItemSelectedTextStyle={{ width: "200%" }}
+      multiSelect
+    />
+  ) : (
+    <DropDown
+      label={label}
+      mode={"outlined"}
+      visible={visible}
+      showDropDown={() => setVisible(true)}
+      onDismiss={() => setVisible(false)}
       value={value}
-      setOpen={setVisible}
       setValue={setValue}
-      items={list}
-      zIndex={zIndex}
-      zIndexInverse={zIndexReverse}
+      list={list}
     />
   );
 };

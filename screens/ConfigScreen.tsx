@@ -2,9 +2,7 @@ import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Button } from "react-native-paper";
-import ConfigPaper, {
-  DataListItem,
-} from "../components/ConfigPaper/ConfigPaper";
+import ConfigPaper, { DataListItem } from "../components/ConfigPaper/ConfigPaper";
 import MissionPaper from "../components/MissionPaper/MissionPaper";
 import configData from "../data/configs.json";
 import missionData from "../data/missions.json";
@@ -31,13 +29,17 @@ export interface Mission {
   image: any;
 }
 
-const ConfigScreen = ({ navigation }: Props) => {
-  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } =
-    Dimensions.get("window");
+export interface SecondaryData {
+  title: string;
+  type: string;
+  description: string;
+  category: string;
+}
 
-  const editionList = [
-    { label: "9th: Eternal War", value: "9th: Eternal War" },
-  ];
+const ConfigScreen = ({ navigation }: Props) => {
+  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
+
+  const editionList = [{ label: "9th: Eternal War", value: "9th: Eternal War" }];
   const battleSizeList = getBattleSizeData(configData, "battleSize");
   const modeList = getBattleSizeData(configData, "modes");
 
@@ -59,18 +61,15 @@ const ConfigScreen = ({ navigation }: Props) => {
   const [teamTwoData, setTeamTwoData] = useState();
 
   const missionList = battleSize && getMissionData(missionData, battleSize);
-  const secondaryObjectives = missionData.secondaries;
-  const secondaryObjectivesArray =
-    createSecondaryObjectiveArray(secondaryObjectives);
+  const secondaryObjectives: Array<SecondaryData> = missionData.secondaries;
+  const secondaryObjectivesArray = createSecondaryObjectiveArray(secondaryObjectives);
 
   function getBattleSizeData(data: any, type: string): Array<DataListItem> {
     const dataObject: DataListItem = data[type];
-    const dataArray: Array<DataListItem> = Object.entries(dataObject).map(
-      (entry) => {
-        const [key, value] = entry;
-        return { label: value, value: key };
-      }
-    );
+    const dataArray: Array<DataListItem> = Object.entries(dataObject).map((entry) => {
+      const [key, value] = entry;
+      return { label: value, value: key };
+    });
     return dataArray;
   }
 
@@ -78,13 +77,33 @@ const ConfigScreen = ({ navigation }: Props) => {
     return data.missions[battleSize];
   }
 
-  console.log("FITZEEE", selectedMission);
-
   function createSecondaryObjectiveArray(data: any): Array<DataListItem> {
     const dataArray: Array<DataListItem> = data.map((entry: any) => {
-      const label = `${entry.title} (${entry.category})`;
+      const label = entry.title;
       const value = entry.title;
-      return { label: label, value: value };
+      return {
+        label: label,
+        value: value,
+        custom: (
+          <View
+            style={{
+              position: "relative",
+              justifyContent: "center",
+              display: "flex",
+              alignItems: "center",
+              flex: 1,
+              paddingTop: 15,
+            }}
+          >
+            <View style={{ position: "absolute", top: 8, left: 0 }}>
+              <Text style={{ fontSize: 8 }}>{entry.category}</Text>
+            </View>
+            <View style={{ width: 400, paddingLeft: 10 }}>
+              <Text style={{ fontSize: 18 }}>{label}</Text>
+            </View>
+          </View>
+        ),
+      };
     });
     return dataArray;
   }
@@ -169,11 +188,7 @@ const ConfigScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image
-          style={styles.image}
-          resizeMode="contain"
-          source={require("../assets/images/wh-brand.png")}
-        />
+        <Image style={styles.image} resizeMode="contain" source={require("../assets/images/wh-brand.png")} />
       </View>
       {configMode === "basic" && (
         <View style={styles.configs}>
@@ -193,38 +208,22 @@ const ConfigScreen = ({ navigation }: Props) => {
             zIndex={2000}
             zIndexReverse={2000}
           />
-          <ConfigPaper
-            title="VS Mode"
-            data={modeList}
-            getValue={setMode}
-            hasError={modeError}
-            zIndex={1000}
-            zIndexReverse={3000}
-          />
+          <ConfigPaper title="VS Mode" data={modeList} getValue={setMode} hasError={modeError} zIndex={1000} zIndexReverse={3000} />
         </View>
       )}
       {configMode === "mission" && (
-        <ScrollView
-          contentContainerStyle={{ alignItems: "center" }}
-          style={{ flex: 1 }}
-        >
+        <ScrollView contentContainerStyle={{ alignItems: "center" }} style={{ flex: 1 }}>
           {renderMissionList(missionList)}
         </ScrollView>
       )}
       {configMode === "players" && (
-        <ScrollView
-          contentContainerStyle={{ alignItems: "center" }}
-          style={{ flex: 1 }}
-        >
-          <PlayerPaper
-            playerCount={mode}
-            getTeamOneData={setTeamOneData}
-            getTeamTwoData={setTeamTwoData}
-          />
+        <ScrollView contentContainerStyle={{ alignItems: "center" }} style={{ flex: 1 }}>
+          <PlayerPaper playerCount={mode} getTeamOneData={setTeamOneData} getTeamTwoData={setTeamTwoData} />
           <SecondaryPaper
             list={secondaryObjectivesArray}
             getSecondaries={setSecondaries}
             allSecondariesFilled={setAllSecondariesFilled}
+            validationData={secondaryObjectives}
           />
         </ScrollView>
       )}
@@ -235,25 +234,13 @@ const ConfigScreen = ({ navigation }: Props) => {
               Set Players
             </Button>
           ) : (
-            <Button
-              mode="contained"
-              color="#C7B300"
-              onPress={() => handleNavigation()}
-            >
+            <Button mode="contained" color="#C7B300" onPress={() => handleNavigation()}>
               Set Players
             </Button>
           )
         ) : (
-          <Button
-            mode="contained"
-            color={"#C7B300"}
-            onPress={() => handleNavigation()}
-          >
-            {configMode === "basic"
-              ? "Select Mission"
-              : configMode === "mission"
-              ? "Set Players"
-              : "Start Game"}
+          <Button mode="contained" color={"#C7B300"} onPress={() => handleNavigation()}>
+            {configMode === "basic" ? "Select Mission" : configMode === "mission" ? "Set Players" : "Start Game"}
           </Button>
         )}
       </View>
@@ -279,6 +266,7 @@ const styles = StyleSheet.create({
     maxWidth: 600,
     alignSelf: "center",
     width: "100%",
+    marginTop: 16,
   },
   imageContainer: {
     width: "100%",
@@ -287,6 +275,7 @@ const styles = StyleSheet.create({
     height: 120,
     maxWidth: 600,
     alignSelf: "center",
+    marginBottom: 16,
   },
   image: {
     width: "100%",

@@ -13,6 +13,8 @@ interface Props {
   secondary: SecondaryPointsProps | undefined;
   getSecondaryPoints?: any;
   handleNextTurn: any;
+  getPointDetails: any;
+  gameEnded: boolean;
 }
 
 interface Secondaries {
@@ -35,6 +37,8 @@ const GameTabs = ({
   secondary,
   getSecondaryPoints,
   handleNextTurn,
+  getPointDetails,
+  gameEnded,
 }: Props) => {
   const [currentTab, setCurrentTab] = useState("0");
 
@@ -52,36 +56,23 @@ const GameTabs = ({
     },
   };
 
-  const [primaryCompletePoints, setPrimaryCompletePoints] =
-    useState<Points>(emptyPrimPoints);
+  const [primaryCompletePoints, setPrimaryCompletePoints] = useState<Points>(emptyPrimPoints);
 
-  const [battleRoundOnePrimaryPoints, setBattleRoundOnePrimaryPoints] =
-    useState<Points>(emptyPrimPoints);
-  const [battleRoundTwoPrimaryPoints, setBattleRoundTwoPrimaryPoints] =
-    useState<Points>(emptyPrimPoints);
-  const [battleRoundThreePrimaryPoints, setBattleRoundThreePrimaryPoints] =
-    useState<Points>(emptyPrimPoints);
-  const [battleRoundFourPrimaryPoints, setBattleRoundFourPrimaryPoints] =
-    useState<Points>(emptyPrimPoints);
-  const [battleRoundFivePrimaryPoints, setBattleRoundFivePrimaryPoints] =
-    useState<Points>(emptyPrimPoints);
+  const [battleRoundOnePrimaryPoints, setBattleRoundOnePrimaryPoints] = useState<Points>(emptyPrimPoints);
+  const [battleRoundTwoPrimaryPoints, setBattleRoundTwoPrimaryPoints] = useState<Points>(emptyPrimPoints);
+  const [battleRoundThreePrimaryPoints, setBattleRoundThreePrimaryPoints] = useState<Points>(emptyPrimPoints);
+  const [battleRoundFourPrimaryPoints, setBattleRoundFourPrimaryPoints] = useState<Points>(emptyPrimPoints);
+  const [battleRoundFivePrimaryPoints, setBattleRoundFivePrimaryPoints] = useState<Points>(emptyPrimPoints);
 
-  const [secondaryCompletePoints, setSecondaryCompletePoints] =
-    useState<SecondaryPoints>(emptySecPoints);
+  const [secondaryCompletePoints, setSecondaryCompletePoints] = useState<SecondaryPoints>(emptySecPoints);
 
-  const [battleRoundOneSecondaryPoints, setBattleRoundOneSecondaryPoints] =
-    useState<SecondaryPoints>(emptySecPoints);
-  const [battleRoundTwoSecondaryPoints, setBattleRoundTwoSecondaryPoints] =
-    useState<SecondaryPoints>(emptySecPoints);
-  const [battleRoundThreeSecondaryPoints, setBattleRoundThreeSecondaryPoints] =
-    useState<SecondaryPoints>(emptySecPoints);
-  const [battleRoundFourSecondaryPoints, setBattleRoundFourSecondaryPoints] =
-    useState<SecondaryPoints>(emptySecPoints);
-  const [battleRoundFiveSecondaryPoints, setBattleRoundFiveSecondaryPoints] =
-    useState<SecondaryPoints>(emptySecPoints);
+  const [battleRoundOneSecondaryPoints, setBattleRoundOneSecondaryPoints] = useState<SecondaryPoints>(emptySecPoints);
+  const [battleRoundTwoSecondaryPoints, setBattleRoundTwoSecondaryPoints] = useState<SecondaryPoints>(emptySecPoints);
+  const [battleRoundThreeSecondaryPoints, setBattleRoundThreeSecondaryPoints] = useState<SecondaryPoints>(emptySecPoints);
+  const [battleRoundFourSecondaryPoints, setBattleRoundFourSecondaryPoints] = useState<SecondaryPoints>(emptySecPoints);
+  const [battleRoundFiveSecondaryPoints, setBattleRoundFiveSecondaryPoints] = useState<SecondaryPoints>(emptySecPoints);
 
   useEffect(() => {
-    console.log("PRIMARY CHANGED", battleRoundOnePrimaryPoints);
     calculatePrimaryPoints();
   }, [
     battleRoundOnePrimaryPoints,
@@ -121,6 +112,85 @@ const GameTabs = ({
     setPrimaryCompletePoints({ teamOne: teamOneC, teamTwo: teamTwoC });
     getPrimaryPoints({ teamOne: teamOneC, teamTwo: teamTwoC });
   }
+
+  useEffect(() => {
+    const pointDetails = {
+      teamOne: {
+        primary: {
+          br1: battleRoundOnePrimaryPoints.teamOne,
+          br2: battleRoundTwoPrimaryPoints.teamOne,
+          br3: battleRoundThreePrimaryPoints.teamOne,
+          br4: battleRoundFourPrimaryPoints.teamOne,
+          br5: battleRoundFivePrimaryPoints.teamOne,
+          total: primaryCompletePoints.teamOne,
+        },
+        secondary: {
+          s1: {
+            br1: parseInt(battleRoundOneSecondaryPoints.teamOne.s1),
+            br2: parseInt(battleRoundTwoSecondaryPoints.teamOne.s1),
+            br3: parseInt(battleRoundThreeSecondaryPoints.teamOne.s1),
+            br4: parseInt(battleRoundFourSecondaryPoints.teamOne.s1),
+            br5: parseInt(battleRoundFiveSecondaryPoints.teamOne.s1),
+            total: parseInt(secondaryCompletePoints.teamOne.s1),
+          },
+          s2: {
+            br1: parseInt(battleRoundOneSecondaryPoints.teamOne.s2),
+            br2: parseInt(battleRoundTwoSecondaryPoints.teamOne.s2),
+            br3: parseInt(battleRoundThreeSecondaryPoints.teamOne.s2),
+            br4: parseInt(battleRoundFourSecondaryPoints.teamOne.s2),
+            br5: parseInt(battleRoundFiveSecondaryPoints.teamOne.s2),
+            total: parseInt(secondaryCompletePoints.teamOne.s2),
+          },
+          s3: {
+            br1: parseInt(battleRoundOneSecondaryPoints.teamOne.s3),
+            br2: parseInt(battleRoundTwoSecondaryPoints.teamOne.s3),
+            br3: parseInt(battleRoundThreeSecondaryPoints.teamOne.s3),
+            br4: parseInt(battleRoundFourSecondaryPoints.teamOne.s3),
+            br5: parseInt(battleRoundFiveSecondaryPoints.teamOne.s3),
+            total: parseInt(secondaryCompletePoints.teamOne.s3),
+          },
+        },
+      },
+      teamTwo: {
+        primary: {
+          br1: battleRoundOnePrimaryPoints.teamTwo,
+          br2: battleRoundTwoPrimaryPoints.teamTwo,
+          br3: battleRoundThreePrimaryPoints.teamTwo,
+          br4: battleRoundFourPrimaryPoints.teamTwo,
+          br5: battleRoundFivePrimaryPoints.teamTwo,
+          total: primaryCompletePoints.teamTwo,
+        },
+        secondary: {
+          s1: {
+            br1: parseInt(battleRoundOneSecondaryPoints.teamTwo.s1),
+            br2: parseInt(battleRoundTwoSecondaryPoints.teamTwo.s1),
+            br3: parseInt(battleRoundThreeSecondaryPoints.teamTwo.s1),
+            br4: parseInt(battleRoundFourSecondaryPoints.teamTwo.s1),
+            br5: parseInt(battleRoundFiveSecondaryPoints.teamTwo.s1),
+            total: parseInt(secondaryCompletePoints.teamTwo.s1),
+          },
+          s2: {
+            br1: parseInt(battleRoundOneSecondaryPoints.teamTwo.s2),
+            br2: parseInt(battleRoundTwoSecondaryPoints.teamTwo.s2),
+            br3: parseInt(battleRoundThreeSecondaryPoints.teamTwo.s2),
+            br4: parseInt(battleRoundFourSecondaryPoints.teamTwo.s2),
+            br5: parseInt(battleRoundFiveSecondaryPoints.teamTwo.s2),
+            total: parseInt(secondaryCompletePoints.teamTwo.s2),
+          },
+          s3: {
+            br1: parseInt(battleRoundOneSecondaryPoints.teamTwo.s3),
+            br2: parseInt(battleRoundTwoSecondaryPoints.teamTwo.s3),
+            br3: parseInt(battleRoundThreeSecondaryPoints.teamTwo.s3),
+            br4: parseInt(battleRoundFourSecondaryPoints.teamTwo.s3),
+            br5: parseInt(battleRoundFiveSecondaryPoints.teamTwo.s3),
+            total: parseInt(secondaryCompletePoints.teamTwo.s3),
+          },
+        },
+      },
+    };
+    console.log("Point Details GAMeTAB", pointDetails);
+    getPointDetails(pointDetails);
+  }, [gameEnded]);
 
   function calculateSecondaryPoints() {
     let teamOneSec1 = 0;
