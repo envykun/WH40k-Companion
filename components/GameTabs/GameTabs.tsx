@@ -12,7 +12,7 @@ interface Props {
   edition: string;
   secondary: SecondaryPointsProps | undefined;
   getSecondaryPoints?: any;
-  handleNextTurn: any;
+  handleNextTurn: number;
   getPointDetails: any;
   gameEnded: boolean;
 }
@@ -41,6 +41,10 @@ const GameTabs = ({
   gameEnded,
 }: Props) => {
   const [currentTab, setCurrentTab] = useState("0");
+
+  useEffect(() => {
+    changeToNextTab(handleNextTurn);
+  }, [handleNextTurn]);
 
   const emptyPrimPoints: Points = { teamOne: 0, teamTwo: 0 };
   const emptySecPoints: SecondaryPoints = {
@@ -114,6 +118,7 @@ const GameTabs = ({
   }
 
   useEffect(() => {
+    if (!gameEnded) return;
     const pointDetails = {
       teamOne: {
         primary: {
@@ -188,7 +193,6 @@ const GameTabs = ({
         },
       },
     };
-    console.log("Point Details GAMeTAB", pointDetails);
     getPointDetails(pointDetails);
   }, [gameEnded]);
 
@@ -231,6 +235,10 @@ const GameTabs = ({
       teamOne: teamOneSec1 + teamOneSec2 + teamOneSec3,
       teamTwo: teamTwoSec1 + teamTwoSec2 + teamTwoSec3,
     });
+  }
+
+  function changeToNextTab(battleRound: number) {
+    setCurrentTab(battleRound.toString());
   }
 
   const renderTabView = () => {

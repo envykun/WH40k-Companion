@@ -13,7 +13,9 @@ export interface GameHistory {
   timePlayed: number;
   date: string;
   playerOneName: string;
+  playerOneNameTwo?: string;
   playerTwoName: string;
+  playerTwoNameTwo?: string;
   teamOneCodex: string;
   teamOneCodexTwo?: string;
   teamTwoCodex: string;
@@ -91,7 +93,7 @@ export async function getHistoryFromJSON(): Promise<{ history: Array<GameHistory
 
 export function getHistory() {
   const [data, setData] = useState<Array<GameHistory> | undefined>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
 
   useEffect(() => {
@@ -101,8 +103,10 @@ export function getHistory() {
   function loadHistory() {
     setIsLoading(true);
     try {
-      getHistoryFromJSON().then((res) => setData(res?.history));
-      setIsLoading(false);
+      getHistoryFromJSON().then((res) => {
+        setData(res?.history.reverse());
+        setIsLoading(false);
+      });
     } catch (err) {
       setError(err);
       setIsLoading(false);

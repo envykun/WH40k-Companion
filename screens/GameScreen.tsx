@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Button, Surface } from "react-native-paper";
+import { Button, Dialog, RadioButton, Subheading, Surface, Title } from "react-native-paper";
 import CPCounter from "../components/CPCounter/CPCounter";
 import CustomModal from "../components/CustomModal/CustomModal";
 import GameTabs from "../components/GameTabs/GameTabs";
 import HistoryModalContent from "../components/HistoryListItem/HistoryModalContent";
 import PlayerTag from "../components/PlayerTag/PlayerTag";
+import Colors from "../constants/Colors";
 import { createHistoryJSON, GameHistory } from "../hooks/useFileSystem";
 import { Mission } from "./ConfigScreen";
 
@@ -101,6 +102,8 @@ export interface PointDetails {
 }
 
 const GameScreen = ({ route, navigation }: Props) => {
+  const editionRoute = route.params.edition;
+  const battleSize = route.params.battleSize;
   const primary = route.params.primary;
   const secondary: SecondaryPointsProps = route.params.secondary;
   const playerOneName = route.params.teamOne ? route.params.teamOne.playerOne.name : "";
@@ -114,8 +117,12 @@ const GameScreen = ({ route, navigation }: Props) => {
   const playerTwoCodexTwo = route.params.teamTwo.playerTwo && route.params.teamTwo.playerTwo.codex;
   const playerTwoCP = route.params.teamTwo ? route.params.teamTwo.playerOne.cp : 0;
 
-  const [battleRound, setBattleRound] = useState(0);
-  const [currentTurn, setCurrentTurn] = useState("Team 1");
+  const [showStartingTeamDialog, setShowStartingTeamDialog] = useState(false);
+  const [startingTeam, setStartingTeam] = useState<number>(1);
+  const [gameStarted, setGameStarted] = useState(false);
+
+  const [battleRound, setBattleRound] = useState<number>(0);
+  const [currentTurn, setCurrentTurn] = useState<string>("Team 1");
   const [primaryPoints, setPrimaryPoints] = useState<Points>({
     teamOne: 0,
     teamTwo: 0,
@@ -129,21 +136,25 @@ const GameScreen = ({ route, navigation }: Props) => {
 
   const [timer, setTimer] = useState(0);
   const [showEndGameModal, setShowEndGameModal] = useState(false);
-  const [buttonText, setButtonText] = useState("Next Turn");
+  const [buttonText, setButtonText] = useState("Start Game");
 
   const [gameHistory, setGameHistory] = useState<GameHistory | null>(null);
   const [pointDetails, setPointDetails] = useState<PointDetails | null>(null);
   const [gameEnded, setGameEnded] = useState<boolean>(false);
 
-  const edition = "9th: Eternal War - Combat Patrol";
+  const edition = editionRoute + " - " + battleSize;
 
   useEffect(() => {
+    setShowStartingTeamDialog(true);
+  }, []);
+
+  useEffect(() => {
+    if (!gameStarted) return;
     let timer = setInterval(() => setTimer((oldTime) => oldTime + 1), 1000);
-    setBattleRound(1);
-    showEndGameModal && clearInterval(timer);
+    gameEnded && clearInterval(timer);
 
     return () => clearInterval(timer);
-  }, [showEndGameModal]);
+  }, [gameStarted, gameEnded]);
 
   useEffect(() => {
     setTeamOneVP(primaryPoints.teamOne + secondaryPoints.teamOne);
@@ -151,6 +162,7 @@ const GameScreen = ({ route, navigation }: Props) => {
   }, [primaryPoints, secondaryPoints]);
 
   useEffect(() => {
+    console.log("PointDetails", pointDetails);
     if (!pointDetails) return;
     const historyJSON: GameHistory = {
       battleSize: edition,
@@ -158,9 +170,13 @@ const GameScreen = ({ route, navigation }: Props) => {
       timePlayed: timer,
       date: new Date().toLocaleDateString(),
       playerOneName: playerOneName,
+      playerOneNameTwo: playerOneNameTwo,
       playerTwoName: playerTwoName,
+      playerTwoNameTwo: playerTwoNameTwo,
       teamOneCodex: playerOneCodex,
+      teamOneCodexTwo: playerOneCodexTwo,
       teamTwoCodex: playerTwoCodex,
+      teamTwoCodexTwo: playerTwoCodexTwo,
       teamOnePoints: teamOneVP,
       teamTwoPoints: teamTwoVP,
       teamOnePrimary: {
@@ -254,15 +270,24 @@ const GameScreen = ({ route, navigation }: Props) => {
         },
       },
     };
-    console.log("SAME SHIT GAMESCREEN", historyJSON);
     setGameHistory(historyJSON);
     setShowEndGameModal(true);
   }, [pointDetails]);
 
   function handleNextTurn() {
-    if (currentTurn === "Team 1") {
-      setCurrentTurn("Team 2");
-      // setTeamTwoVP((prev) => (prev += 1));
+    if (battleRound === 0) {
+      if (showStartingTeamDialog) {
+        setCurrentTurn(`Team ${startingTeam}`);
+        setShowStartingTeamDialog(false);
+        return;
+      }
+      setButtonText("Next Turn");
+      setBattleRound(1);
+      setGameStarted(true);
+      return;
+    }
+    if (currentTurn === `Team ${startingTeam}`) {
+      startingTeam === 1 ? setCurrentTurn("Team 2") : setCurrentTurn("Team 1");
       if (battleRound === 5) {
         setButtonText("END GAME");
         return;
@@ -270,12 +295,11 @@ const GameScreen = ({ route, navigation }: Props) => {
       setButtonText("Next Battleround");
       return;
     }
-    setCurrentTurn("Team 1");
-    // setTeamOneVP((prev) => (prev += 1));
     if (battleRound === 5) {
       setGameEnded(true);
       return;
     }
+    setCurrentTurn(`Team ${startingTeam}`);
     setBattleRound((prev) => (prev += 1));
     setButtonText("Next Turn");
   }
@@ -367,7 +391,7 @@ const GameScreen = ({ route, navigation }: Props) => {
           edition={edition}
           secondary={secondary}
           getSecondaryPoints={setSecondaryPoints}
-          handleNextTurn
+          handleNextTurn={battleRound}
           getPointDetails={setPointDetails}
           gameEnded={gameEnded}
         />
@@ -377,6 +401,24 @@ const GameScreen = ({ route, navigation }: Props) => {
           {buttonText}
         </Button>
       </View>
+      <Dialog visible={showStartingTeamDialog} dismissable={false} style={{ width: 400, alignSelf: "center" }}>
+        <Dialog.Title>Choose the starting team.</Dialog.Title>
+        <Dialog.Content>
+          <RadioButton.Group onValueChange={(newValue) => setStartingTeam(parseInt(newValue))} value={startingTeam.toString()}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+              <Subheading>{playerOneNameTwo ? `${playerOneName} & ${playerOneNameTwo}` : playerOneName}</Subheading>
+              <RadioButton.Android value="1" color={Colors.dark.yellow} />
+            </View>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+              <Subheading>{playerTwoNameTwo ? `${playerTwoNameTwo} & ${playerTwoName}` : playerTwoName}</Subheading>
+              <RadioButton.Android value="2" color={Colors.dark.yellow} />
+            </View>
+          </RadioButton.Group>
+        </Dialog.Content>
+        <Dialog.Actions>
+          <Button onPress={() => handleNextTurn()}>confirm</Button>
+        </Dialog.Actions>
+      </Dialog>
     </View>
   );
 };
@@ -386,8 +428,7 @@ export default GameScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
-    paddingTop: 5,
+    paddingTop: 30,
     backgroundColor: "#101010",
   },
   overview: { flex: 1 },

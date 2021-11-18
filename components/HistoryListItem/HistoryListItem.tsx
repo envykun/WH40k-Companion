@@ -57,7 +57,7 @@ const HistoryListItem = ({
       <CustomModal
         visible={showModal}
         hideModal={() => setShowModal(false)}
-        children={<HistoryModalContent history={history} closeModal={handleCloseModal} />}
+        children={<HistoryModalContent history={history} closeModal={handleCloseModal} navigation={undefined} />}
       />
       <View
         style={{

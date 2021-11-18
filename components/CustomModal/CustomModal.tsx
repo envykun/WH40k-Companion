@@ -23,5 +23,6 @@ export default CustomModal;
 const styles = StyleSheet.create({
   containerStyle: {
     marginVertical: -45,
+    marginTop: -60,
   },
 });

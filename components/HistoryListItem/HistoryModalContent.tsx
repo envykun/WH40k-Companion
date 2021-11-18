@@ -31,8 +31,29 @@ const StatsPaper = ({ history, isTeamTwo, navigation }: Props) => {
     <Surface style={styles.surface}>
       <View style={{ paddingLeft: 16 }}>
         <Headline style={{ color: "#6e6e6e", alignSelf: "center" }}>Statistic {isTeamTwo ? "Team 2" : "Team 1"}</Headline>
-        <Title>Team: {!isTeamTwo ? history?.playerOneName : history?.playerTwoName}</Title>
-        <Title>Codex: {!isTeamTwo ? history?.teamOneCodex : history?.teamTwoCodex}</Title>
+        {!isTeamTwo ? (
+          <View>
+            <Title>
+              Team: {history?.playerOneName}
+              {history?.playerOneNameTwo && ` & ${history.playerOneNameTwo}`}
+            </Title>
+            <Title>
+              Codex: {history?.teamOneCodex}
+              {history?.teamOneCodexTwo && ` | ${history.teamOneCodexTwo}`}
+            </Title>
+          </View>
+        ) : (
+          <View>
+            <Title>
+              Team: {history?.playerTwoName}
+              {history?.playerTwoNameTwo && ` & ${history.playerTwoNameTwo}`}
+            </Title>
+            <Title>
+              Codex: {history?.teamTwoCodex}
+              {history?.teamTwoCodexTwo && ` | ${history.teamTwoCodexTwo}`}
+            </Title>
+          </View>
+        )}
       </View>
       <DataTable>
         <DataTable.Header>
@@ -177,6 +198,7 @@ const HistoryModalContent = ({ history, navigation, isEndScreen, closeModal }: P
     setHistory(historyString);
     navigation.popToTop();
   };
+  console.log("JHJ", history);
 
   return (
     <View style={styles.container}>
@@ -276,7 +298,7 @@ const HistoryModalContent = ({ history, navigation, isEndScreen, closeModal }: P
           </Button>
         </View>
       ) : (
-        <View style={{ position: "absolute", top: -10, right: -10 }}>
+        <View style={{ position: "absolute", top: 10, right: -10 }}>
           <IconButton
             icon={() => <MaterialCommunityIcons name="window-close" size={24} color="white" />}
             onPress={() => {

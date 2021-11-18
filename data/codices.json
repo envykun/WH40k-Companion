@@ -95,6 +95,42 @@
         {
             "label": "Tyranids",
             "value": "Tyranids"
+        },
+        {
+            "label": "Ultramarines",
+            "value": "Ultramarines"
+        },
+        {
+            "label": "Black Templars",
+            "value": "Black Templars"
+        },
+        {
+            "label": "Salamanders",
+            "value": "Salamanders"
+        },
+        {
+            "label": "Imperial Fists",
+            "value": "Imperial Fists"
+        },
+        {
+            "label": "White Scars",
+            "value": "White Scars"
+        },
+        {
+            "label": "Iron Hands",
+            "value": "Iron Hands"
+        },
+        {
+            "label": "Raven Guard",
+            "value": "Raven Guard"
+        },
+        {
+            "label": "Craftworlds",
+            "value": "Craftworlds"
+        },
+        {
+            "label": "Ynnari",
+            "value": "Ynnari"
         }
     ]
 }

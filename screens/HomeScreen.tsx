@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import { ActivityIndicator, Button, Dialog, Headline, Paragraph, Surface, Title } from "react-native-paper";
 import HistoryListItem from "../components/HistoryListItem/HistoryListItem";
 import Colors from "../constants/Colors";
@@ -12,21 +12,18 @@ interface Props {
 
 const HomeScreen = ({ navigation }: Props) => {
   const { isLoading, data, error, loadHistory } = getHistory();
-  const [showAlert, setShowAlert] = useState(false);
+  const [showClearHistoryDialog, setShowClearHistoryDialog] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
 
-  const fakeData = {
-    teamOneCodex: "Adeptus Custodes",
-    teamTwoCodex: "Adeptus Mechanicus",
-    teamOnePoints: 65,
-    teamTwoPoints: 69,
-    date: new Date(),
-  };
-  console.log(isLoading);
-  // console.log(data);
+  useEffect(() => {
+    if (!isLoading) {
+      setInitialLoading(false);
+    }
+  }, [isLoading]);
 
   const handleClearHistory = () => {
     clearHistory();
-    setShowAlert(false);
+    setShowClearHistoryDialog(false);
     loadHistory();
   };
 
@@ -36,51 +33,51 @@ const HomeScreen = ({ navigation }: Props) => {
         <Text style={{ fontSize: 42, fontFamily: "roboto-regular", color: Colors.dark.yellow }}>Warhammer 40k Companion</Text>
       </View>
       <View style={styles.bodyContent}>
-        <Title style={{ padding: 8, color: "#fff" }}>Game History</Title>
-        {isLoading ? (
+        {initialLoading ? (
           <ActivityIndicator animating={true} />
         ) : error ? (
           <Text>{error.message}</Text>
-        ) : data ? (
-          <Surface style={styles.surface}>
-            <ScrollView contentContainerStyle={{ padding: 8 }} style={{}}>
-              {data
-                .map((history: GameHistory, index: number) => (
-                  <HistoryListItem
-                    key={index}
-                    battleSize={history.battleSize}
-                    teamOneCodex={history.teamOneCodex}
-                    teamOnePoints={history.teamOnePoints}
-                    teamTwoCodex={history.teamTwoCodex}
-                    teamTwoPoints={history.teamTwoPoints}
-                    date={history.date}
-                    history={history}
-                  />
-                ))
-                .reverse()}
-            </ScrollView>
-          </Surface>
         ) : (
           <Surface style={styles.surface}>
-            <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 20 }}>
-              <Text style={{ paddingLeft: 8, color: "#fff" }}>There is no history</Text>
-              <Entypo name="emoji-sad" size={18} color="#fff" style={{ paddingLeft: 8 }} />
-            </View>
+            <Title style={{ paddingBottom: 16, color: "#fff" }}>Game History</Title>
+            <FlatList
+              data={data}
+              keyExtractor={(history, index) => "key" + index}
+              onRefresh={() => loadHistory()}
+              refreshing={isLoading}
+              ListEmptyComponent={
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginTop: 20,
+                  }}
+                >
+                  <Text style={{ paddingLeft: 8, color: "#fff" }}>There is no history.</Text>
+                  <Entypo name="emoji-sad" size={18} color="#fff" style={{ paddingLeft: 8 }} />
+                </View>
+              }
+              renderItem={({ item }) => (
+                <HistoryListItem
+                  battleSize={item.battleSize}
+                  teamOneCodex={item.teamOneCodex}
+                  teamOneCodexTwo={item.teamOneCodexTwo}
+                  teamOnePoints={item.teamOnePoints}
+                  teamTwoCodex={item.teamTwoCodex}
+                  teamTwoCodexTwo={item.teamTwoCodexTwo}
+                  teamTwoPoints={item.teamTwoPoints}
+                  date={item.date}
+                  history={item}
+                />
+              )}
+            />
           </Surface>
         )}
       </View>
-      <Dialog visible={showAlert} onDismiss={() => setShowAlert(false)}>
-        <Dialog.Title>Alert</Dialog.Title>
-        <Dialog.Content>
-          <Paragraph>This is simple dialog</Paragraph>
-        </Dialog.Content>
-        <Dialog.Actions>
-          <Button onPress={handleClearHistory}>Done</Button>
-        </Dialog.Actions>
-      </Dialog>
       <View style={styles.buttonContainer}>
         <View style={{ flex: 1 }}>
-          <Button mode="text" color="#C7B300" onPress={() => setShowAlert(true)}>
+          <Button mode="text" color="#C7B300" onPress={() => setShowClearHistoryDialog(true)}>
             Clear History
           </Button>
         </View>
@@ -101,6 +98,23 @@ const HomeScreen = ({ navigation }: Props) => {
           </Button>
         </View>
       </View>
+      <Dialog
+        visible={showClearHistoryDialog}
+        onDismiss={() => setShowClearHistoryDialog(false)}
+        style={{ minWidth: 350, maxWidth: "40%", alignSelf: "center" }}
+      >
+        <Dialog.Title>Warning!</Dialog.Title>
+        <Dialog.Content>
+          <Paragraph>This will delete all history files. They cannot be restored.</Paragraph>
+          <Paragraph>Are you sure?</Paragraph>
+        </Dialog.Content>
+        <Dialog.Actions>
+          <Button onPress={() => setShowClearHistoryDialog(false)}>Cancel</Button>
+          <Button mode="contained" onPress={handleClearHistory}>
+            Yes, I'm sure
+          </Button>
+        </Dialog.Actions>
+      </Dialog>
     </View>
   );
 };
@@ -114,7 +128,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#101010",
-    marginTop: 26,
   },
   title: {
     padding: 20,

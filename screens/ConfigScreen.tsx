@@ -77,6 +77,11 @@ const ConfigScreen = ({ navigation }: Props) => {
     return data.missions[battleSize];
   }
 
+  function findInBattleSizeList(list: Array<DataListItem>, battleSize: string): string | undefined {
+    const battleSizeObj = list.find((bs) => bs.value === battleSize);
+    return battleSizeObj?.label;
+  }
+
   function createSecondaryObjectiveArray(data: any): Array<DataListItem> {
     const dataArray: Array<DataListItem> = data.map((entry: any) => {
       const label = entry.title;
@@ -146,6 +151,8 @@ const ConfigScreen = ({ navigation }: Props) => {
         setConfigMode("players");
       } else if (configMode === "players") {
         navigation.navigate("Game", {
+          edition: edition,
+          battleSize: findInBattleSizeList(battleSizeList, battleSize),
           primary: selectedMission,
           secondary: secondaries,
           teamOne: teamOneData,
@@ -183,6 +190,44 @@ const ConfigScreen = ({ navigation }: Props) => {
         />
       );
     });
+  };
+
+  const renderButton = () => {
+    if (configMode === "mission") {
+      if (!selectedMission) {
+        return (
+          <Button mode="contained" color="#9b9b9b">
+            Set Players
+          </Button>
+        );
+      } else {
+        return (
+          <Button mode="contained" color="#C7B300" onPress={() => handleNavigation()}>
+            Set Players
+          </Button>
+        );
+      }
+    } else if (configMode === "players") {
+      if (!allSecondariesFilled) {
+        return (
+          <Button mode="contained" color="#9b9b9b">
+            Start Game
+          </Button>
+        );
+      } else {
+        return (
+          <Button mode="contained" color={"#C7B300"} onPress={() => handleNavigation()}>
+            Start Game
+          </Button>
+        );
+      }
+    } else {
+      return (
+        <Button mode="contained" color={"#C7B300"} onPress={() => handleNavigation()}>
+          Select Mission
+        </Button>
+      );
+    }
   };
 
   return (
@@ -227,23 +272,7 @@ const ConfigScreen = ({ navigation }: Props) => {
           />
         </ScrollView>
       )}
-      <View style={styles.footerButton}>
-        {configMode === "mission" ? (
-          !selectedMission ? (
-            <Button mode="contained" color="#9b9b9b">
-              Set Players
-            </Button>
-          ) : (
-            <Button mode="contained" color="#C7B300" onPress={() => handleNavigation()}>
-              Set Players
-            </Button>
-          )
-        ) : (
-          <Button mode="contained" color={"#C7B300"} onPress={() => handleNavigation()}>
-            {configMode === "basic" ? "Select Mission" : configMode === "mission" ? "Set Players" : "Start Game"}
-          </Button>
-        )}
-      </View>
+      <View style={styles.footerButton}>{renderButton()}</View>
     </View>
   );
 };
@@ -255,6 +284,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     paddingHorizontal: 8,
+    paddingTop: 30,
     backgroundColor: "#101010",
   },
   configs: {

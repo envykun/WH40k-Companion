@@ -41,6 +41,7 @@ const SecondaryPaper = ({ list, getSecondaries, allSecondariesFilled, validation
     { label: "Custom Objective 3", value: "Custom3" },
   ]);
 
+  // Validation Team 1 secondaries
   useEffect(() => {
     validateCategory(
       teamOneSecondaries,
@@ -49,6 +50,10 @@ const SecondaryPaper = ({ list, getSecondaries, allSecondariesFilled, validation
       setShowErrorTeamOne,
       setErrorTeamOne
     );
+  }, [teamOneSecondaries, teamOneCatOne, teamOneCatTwo, teamOneCatThree]);
+
+  // Validation Team 2 secondaries
+  useEffect(() => {
     validateCategory(
       teamTwoSecondaries,
       validationData,
@@ -56,6 +61,11 @@ const SecondaryPaper = ({ list, getSecondaries, allSecondariesFilled, validation
       setShowErrorTeamTwo,
       setErrorTeamTwo
     );
+  }, [teamTwoSecondaries, teamTwoCatOne, teamTwoCatTwo, teamTwoCatThree]);
+
+  // Update Secondaries and pass to parent
+  useEffect(() => {
+    if (teamOneSecondaries.split(/,(?!\s)/).length <= 3 || teamTwoSecondaries.split(/,(?!\s)/).length <= 3) return;
     const secondaries = {
       teamOne: [
         { name: getSecondaryFromString(teamOneSecondaries, 1, 1), count: 0 },
@@ -68,11 +78,24 @@ const SecondaryPaper = ({ list, getSecondaries, allSecondariesFilled, validation
         { name: getSecondaryFromString(teamTwoSecondaries, 3), count: 0 },
       ],
     };
+    allSecondariesFilled(true);
     getSecondaries(secondaries);
-  }, [teamOneSecondaries, teamTwoSecondaries, teamOneCatOne, teamOneCatTwo, teamOneCatThree]);
+  }, [
+    teamOneSecondaries,
+    teamTwoSecondaries,
+    teamOneCatOne,
+    teamOneCatTwo,
+    teamOneCatThree,
+    teamOneObjOne,
+    teamOneObjTwo,
+    teamOneObjThree,
+    teamTwoObjOne,
+    teamTwoObjTwo,
+    teamTwoObjThree,
+  ]);
 
   function getSecondaryFromString(secondaries: string, index: number, team?: number): string {
-    const secondaryArray = secondaries.split(",");
+    const secondaryArray = secondaries.split(/,(?!\s)/);
     if (secondaryArray[index] === "Custom1") return team === 1 ? teamOneObjOne.toUpperCase() : teamTwoObjOne.toUpperCase();
     if (secondaryArray[index] === "Custom2") return team === 1 ? teamOneObjTwo.toUpperCase() : teamTwoObjTwo.toUpperCase();
     if (secondaryArray[index] === "Custom3") return team === 1 ? teamOneObjThree.toUpperCase() : teamTwoObjThree.toUpperCase();
