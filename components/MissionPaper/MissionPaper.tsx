@@ -21,7 +21,7 @@ const MissionPaper = ({ mission, image, isMarked, onPress }: Props) => {
           <Text style={styles.subTitle}>Mission Briefing</Text>
           <Text style={styles.description}>{mission.briefing}</Text>
         </View>
-        {mission.rules.length > 0 && (
+        {"rules" in mission && (
           <View style={styles.missionSubBlock}>
             <Text style={styles.subTitle}>Mission Rules</Text>
             <Text style={styles.description}>{mission.rules}</Text>

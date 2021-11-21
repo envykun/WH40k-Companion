@@ -12,9 +12,10 @@
 - [x] BattleSize string hardcoded und falsch an history übergeben
 - [x] Icons als png
 - [x] Modal full screen
-- [ ] Loading animations wo nötig
+- [x] Loading animations wo nötig
 - [ ] HomeScreen styling
 - [ ] Werden Bilder für immer gespeichert? Oder bleiben die nur im Cache?
-- [ ] Tobis Daten einfügen
+- [x] Tobis Daten einfügen
 - [ ] Responsive styling (Breapoints)
-- [ ] Info Modal
+- [x] Info Modal
+- [x] CP für 2 player

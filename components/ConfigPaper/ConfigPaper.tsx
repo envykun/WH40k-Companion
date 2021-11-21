@@ -8,8 +8,7 @@ interface ConfigPaperProps {
   data: Array<DataListItem>;
   getValue: any;
   hasError: boolean;
-  zIndex: number;
-  zIndexReverse: number;
+  initialValue?: string;
 }
 
 export interface DataListItem {
@@ -17,11 +16,11 @@ export interface DataListItem {
   value: string;
 }
 
-const ConfigPaper = ({ title, data, getValue, hasError, zIndex, zIndexReverse }: ConfigPaperProps) => {
+const ConfigPaper = ({ title, data, getValue, hasError, initialValue }: ConfigPaperProps) => {
   return (
-    <Surface style={[styles.surface, { zIndex: zIndex }]}>
+    <Surface style={styles.surface}>
       <Text style={styles.text}>{title}</Text>
-      <Dropdown list={data} label={title} getValue={getValue} zIndex={zIndex} zIndexReverse={zIndexReverse} />
+      <Dropdown list={data} label={title} getValue={getValue} initialValue={initialValue} />
       {hasError && (
         <HelperText type="error" visible={hasError}>
           * This field is required

@@ -53,8 +53,6 @@ const ImagePickerPaper = ({ getImages, historyImages, isEndScreen, setShowMax }:
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       const { uri } = result as ImageInfo;
       setImages((oldArray) => [...oldArray, uri]);
@@ -93,7 +91,9 @@ const ImagePickerPaper = ({ getImages, historyImages, isEndScreen, setShowMax }:
 
   return (
     <View>
-      <View style={{ alignItems: "center", paddingTop: 8 }}>{images.length > 0 && renderImages()}</View>
+      <View style={{ alignItems: "center", paddingTop: 8 }}>
+        {images.length > 0 ? renderImages() : <Text style={{ alignSelf: "flex-start" }}>No pictures added.</Text>}
+      </View>
       {isEndScreen && (
         <View style={styles.iconContainer}>
           <View>

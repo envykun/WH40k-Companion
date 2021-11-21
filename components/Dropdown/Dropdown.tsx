@@ -1,24 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import DropDown from "react-native-paper-dropdown";
+import Colors from "../../constants/Colors";
 
 interface Props {
   label: string;
   list: any;
   getValue: any;
-  zIndex?: number;
-  zIndexReverse?: number;
   multiSelect?: boolean;
+  initialValue?: string;
 }
 
-const Dropdown = ({ label, list, getValue, multiSelect }: Props) => {
-  const [value, setValue] = useState(null);
+const Dropdown = ({ label, list, getValue, multiSelect, initialValue }: Props) => {
+  const [value, setValue] = useState(initialValue);
   const [multiple, setMultiple] = useState("");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     multiSelect ? getValue(multiple) : getValue(value);
   }, [value, multiple]);
+
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
 
   return multiSelect ? (
     <DropDown
@@ -50,9 +54,4 @@ const Dropdown = ({ label, list, getValue, multiSelect }: Props) => {
 
 export default Dropdown;
 
-const styles = StyleSheet.create({
-  textStyle: {
-    overflow: "visible",
-    width: "100%",
-  },
-});
+const styles = StyleSheet.create({});

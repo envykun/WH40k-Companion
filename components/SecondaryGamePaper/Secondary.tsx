@@ -2,27 +2,38 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { IconButton, Surface, TextInput } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
+import CustomModal from "../CustomModal/CustomModal";
+import InfoModal from "../InfoModal/InfoModal";
+import { SecondaryData } from "../../screens/ConfigScreen";
+import { Editions } from "../../types";
 
 interface Props {
   title: string | undefined;
   count: string | undefined;
   hasInput?: boolean;
   getValue: any;
+  secondaries: Array<SecondaryData>;
+  edition: Editions;
 }
 
-const Secondary = ({ title, count, hasInput, getValue }: Props) => {
+const Secondary = ({ title, count, hasInput, getValue, secondaries, edition }: Props) => {
+  const [showInfoModal, setShowInfoModal] = useState(false);
+
   return (
     <View style={styles.secondary}>
       <Surface style={styles.surface}>
+        <CustomModal
+          visible={showInfoModal}
+          hideModal={() => setShowInfoModal(false)}
+          children={<InfoModal secondaries={secondaries} closeInfo={() => setShowInfoModal(false)} scrollTo={title} edition={edition} />}
+        />
         <View>
           <Text style={styles.title}>{title}</Text>
         </View>
         <View>
           <IconButton
-            icon={() => (
-              <Ionicons name="ios-information-circle" size={32} color="black" />
-            )}
-            onPress={() => console.log("Show Info")}
+            icon={() => <Ionicons name="ios-information-circle" size={32} color="black" />}
+            onPress={() => setShowInfoModal(true)}
           />
         </View>
       </Surface>

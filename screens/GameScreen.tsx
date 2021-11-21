@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Button, Dialog, RadioButton, Subheading, Surface, Title } from "react-native-paper";
+import { KeyboardAvoidingView, Platform, StyleSheet, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Button, Dialog, Paragraph, RadioButton, Subheading, Surface, Title } from "react-native-paper";
 import CPCounter from "../components/CPCounter/CPCounter";
 import CustomModal from "../components/CustomModal/CustomModal";
 import GameTabs from "../components/GameTabs/GameTabs";
@@ -8,10 +10,10 @@ import HistoryModalContent from "../components/HistoryListItem/HistoryModalConte
 import PlayerTag from "../components/PlayerTag/PlayerTag";
 import Colors from "../constants/Colors";
 import { createHistoryJSON, GameHistory } from "../hooks/useFileSystem";
+import { Editions } from "../types";
 import { Mission } from "./ConfigScreen";
 
 interface Props {
-  edition: string;
   route: any;
   navigation: any;
 }
@@ -104,22 +106,25 @@ export interface PointDetails {
 const GameScreen = ({ route, navigation }: Props) => {
   const editionRoute = route.params.edition;
   const battleSize = route.params.battleSize;
-  const primary = route.params.primary;
+  const primary: Mission = route.params.primary;
   const secondary: SecondaryPointsProps = route.params.secondary;
   const playerOneName = route.params.teamOne ? route.params.teamOne.playerOne.name : "";
   const playerOneNameTwo = route.params.teamOne.playerTwo && route.params.teamOne.playerTwo.name;
   const playerOneCodex = route.params.teamOne ? route.params.teamOne.playerOne.codex : "";
   const playerOneCodexTwo = route.params.teamOne.playerTwo && route.params.teamOne.playerTwo.codex;
   const playerOneCP = route.params.teamOne ? route.params.teamOne.playerOne.cp : 0;
+  const playerOneCPTwo = route.params.teamOne.playerTwo && route.params.teamOne.playerTwo.cp;
   const playerTwoName = route.params.teamTwo ? route.params.teamTwo.playerOne.name : "";
   const playerTwoNameTwo = route.params.teamTwo.playerTwo && route.params.teamTwo.playerTwo.name;
   const playerTwoCodex = route.params.teamTwo ? route.params.teamTwo.playerOne.codex : "";
   const playerTwoCodexTwo = route.params.teamTwo.playerTwo && route.params.teamTwo.playerTwo.codex;
   const playerTwoCP = route.params.teamTwo ? route.params.teamTwo.playerOne.cp : 0;
+  const playerTwoCPTwo = route.params.teamTwo.playerTwo && route.params.teamTwo.playerTwo.cp;
 
   const [showStartingTeamDialog, setShowStartingTeamDialog] = useState(false);
   const [startingTeam, setStartingTeam] = useState<number>(1);
-  const [gameStarted, setGameStarted] = useState(false);
+  const [gameStarted, setGameStarted] = useState<boolean>(false);
+  const [showCancelGame, setShowCancelGame] = useState<boolean>(false);
 
   const [battleRound, setBattleRound] = useState<number>(0);
   const [currentTurn, setCurrentTurn] = useState<string>("Team 1");
@@ -142,7 +147,8 @@ const GameScreen = ({ route, navigation }: Props) => {
   const [pointDetails, setPointDetails] = useState<PointDetails | null>(null);
   const [gameEnded, setGameEnded] = useState<boolean>(false);
 
-  const edition = editionRoute + " - " + battleSize;
+  const edition = editionRoute;
+  const editionBattleSize = editionRoute + " - " + battleSize;
 
   useEffect(() => {
     setShowStartingTeamDialog(true);
@@ -162,10 +168,9 @@ const GameScreen = ({ route, navigation }: Props) => {
   }, [primaryPoints, secondaryPoints]);
 
   useEffect(() => {
-    console.log("PointDetails", pointDetails);
     if (!pointDetails) return;
     const historyJSON: GameHistory = {
-      battleSize: edition,
+      battleSize: editionBattleSize,
       mission: primary.title,
       timePlayed: timer,
       date: new Date().toLocaleDateString(),
@@ -310,8 +315,9 @@ const GameScreen = ({ route, navigation }: Props) => {
     }
     return false;
   }
-
   return (
+    // <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : undefined}>
+    // <ScrollView contentContainerStyle={styles.containerScrollview}>
     <View style={styles.container}>
       <CustomModal
         visible={showEndGameModal}
@@ -345,9 +351,21 @@ const GameScreen = ({ route, navigation }: Props) => {
               >
                 {battleRound}
               </Text>
-              <Text style={{}}>Battle</Text>
+              <Text>Battle</Text>
               <Text>Round</Text>
             </Surface>
+            <View style={styles.currentCodex}>
+              <Surface
+                style={{
+                  backgroundColor: "#C4C4C4",
+                  paddingVertical: 4,
+                  paddingHorizontal: 16,
+                  borderRadius: 4,
+                }}
+              >
+                <Text style={{ alignSelf: "center" }}>{currentTurn === "Team 1" ? playerOneCodex : playerTwoCodex}</Text>
+              </Surface>
+            </View>
           </View>
           <View style={styles.playerTag}>
             <PlayerTag
@@ -363,22 +381,35 @@ const GameScreen = ({ route, navigation }: Props) => {
         </View>
         <View style={styles.overviewInner}>
           <View style={styles.cp}>
-            <CPCounter initialValue={playerOneCP} />
+            {playerOneCPTwo ? (
+              <View style={{ flexDirection: "row", marginLeft: 20 }}>
+                <View style={{ padding: 8 }}>
+                  <CPCounter initialValue={playerOneCP} title={playerOneName} small />
+                  <CPCounter initialValue={playerOneCPTwo} title={playerOneNameTwo} small />
+                </View>
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "flex-start", paddingLeft: 26 }}>
+                  <CPCounter initialValue={0} />
+                </View>
+              </View>
+            ) : (
+              <CPCounter initialValue={playerOneCP} addOne={currentTurn === "Team 1"} />
+            )}
           </View>
-          <View style={styles.currentCodex}>
-            <Surface
-              style={{
-                backgroundColor: "#C4C4C4",
-                paddingVertical: 4,
-                paddingHorizontal: 16,
-                borderRadius: 4,
-              }}
-            >
-              <Text style={{ alignSelf: "center" }}>{currentTurn === "Team 1" ? playerOneCodex : playerTwoCodex}</Text>
-            </Surface>
-          </View>
+
           <View style={styles.cp}>
-            <CPCounter initialValue={playerTwoCP} />
+            {playerTwoCPTwo ? (
+              <View style={{ flexDirection: "row-reverse", marginLeft: 20 }}>
+                <View style={{ padding: 8 }}>
+                  <CPCounter initialValue={playerTwoCP} title={playerTwoName} small />
+                  <CPCounter initialValue={playerTwoCPTwo} title={playerTwoNameTwo} small />
+                </View>
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "flex-end", paddingRight: 26 }}>
+                  <CPCounter initialValue={0} />
+                </View>
+              </View>
+            ) : (
+              <CPCounter initialValue={playerTwoCP} addOne={currentTurn === "Team 2"} />
+            )}
           </View>
         </View>
       </View>
@@ -389,16 +420,28 @@ const GameScreen = ({ route, navigation }: Props) => {
           primaryDescription={primary.briefing}
           getPrimaryPoints={setPrimaryPoints}
           edition={edition}
+          battleSize={battleSize}
           secondary={secondary}
           getSecondaryPoints={setSecondaryPoints}
           handleNextTurn={battleRound}
           getPointDetails={setPointDetails}
           gameEnded={gameEnded}
+          mission={primary}
         />
       </View>
       <View style={styles.button}>
-        <Button mode="contained" color="#C7B300" onPress={() => handleNextTurn()}>
-          {buttonText}
+        {!gameStarted && (
+          <Button mode="text" style={{ position: "absolute", left: 20 }} color="#C7B300" onPress={() => navigation.goBack()}>
+            Back
+          </Button>
+        )}
+        <View style={{ width: 300 }}>
+          <Button mode="contained" color="#C7B300" onPress={() => handleNextTurn()}>
+            {buttonText}
+          </Button>
+        </View>
+        <Button mode="text" style={{ position: "absolute", right: 20 }} color="#C7B300" onPress={() => setShowCancelGame(true)}>
+          End game
         </Button>
       </View>
       <Dialog visible={showStartingTeamDialog} dismissable={false} style={{ width: 400, alignSelf: "center" }}>
@@ -419,7 +462,35 @@ const GameScreen = ({ route, navigation }: Props) => {
           <Button onPress={() => handleNextTurn()}>confirm</Button>
         </Dialog.Actions>
       </Dialog>
+      <Dialog
+        visible={showCancelGame}
+        dismissable={true}
+        onDismiss={() => setShowCancelGame(false)}
+        style={{ width: 400, alignSelf: "center" }}
+      >
+        <Dialog.Title>Exit game?</Dialog.Title>
+        <Dialog.Content>
+          <Paragraph>You will return to the main menu. No History will be saved.</Paragraph>
+          <Paragraph>Do you want to continue?</Paragraph>
+        </Dialog.Content>
+        <Dialog.Actions>
+          <Button mode="text" onPress={() => setShowCancelGame(false)}>
+            Cancel
+          </Button>
+          <Button
+            mode="contained"
+            onPress={() => {
+              setShowCancelGame(false);
+              navigation.popToTop();
+            }}
+          >
+            confirm
+          </Button>
+        </Dialog.Actions>
+      </Dialog>
     </View>
+    // </ScrollView>
+    // </KeyboardAvoidingView>
   );
 };
 
@@ -428,8 +499,13 @@ export default GameScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: "100%",
     paddingTop: 30,
     backgroundColor: "#101010",
+  },
+  containerScrollview: {
+    // flexGrow: 1,
+    minHeight: "100%",
   },
   overview: { flex: 1 },
   overviewInner: {
@@ -441,6 +517,7 @@ const styles = StyleSheet.create({
   },
   cp: {
     flex: 1,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -461,6 +538,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
+    elevation: 3,
   },
   timer: {
     position: "absolute",
@@ -470,5 +548,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     minWidth: 175,
     alignContent: "center",
+    position: "absolute",
+    top: 155,
   },
 });

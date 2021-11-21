@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-paper";
+import { Mission } from "../../screens/ConfigScreen";
 import { Points, SecondaryPointsProps } from "../../screens/GameScreen";
+import { Editions } from "../../types";
 import TabContainerPaper from "../TabContainerPaper/TabContainerPaper";
 
 interface Props {
@@ -9,12 +11,14 @@ interface Props {
   primaryTitle: string;
   primaryDescription: string;
   getPrimaryPoints: any;
-  edition: string;
+  edition: Editions;
+  battleSize: string;
   secondary: SecondaryPointsProps | undefined;
   getSecondaryPoints?: any;
   handleNextTurn: number;
   getPointDetails: any;
   gameEnded: boolean;
+  mission: Mission;
 }
 
 interface Secondaries {
@@ -34,11 +38,13 @@ const GameTabs = ({
   primaryDescription,
   getPrimaryPoints,
   edition,
+  battleSize,
   secondary,
   getSecondaryPoints,
   handleNextTurn,
   getPointDetails,
   gameEnded,
+  mission,
 }: Props) => {
   const [currentTab, setCurrentTab] = useState("0");
 
@@ -251,8 +257,10 @@ const GameTabs = ({
             primaryTitle={primaryTitle}
             primaryDescription={primaryDescription}
             edition={edition}
+            battleSize={battleSize}
             secondary={secondary}
             secondaryPoints={secondaryCompletePoints}
+            mission={mission}
           />
         );
       case "1":
@@ -264,10 +272,12 @@ const GameTabs = ({
             primaryDescription={primaryDescription}
             getPrimaryCount={setBattleRoundOnePrimaryPoints}
             edition={edition}
+            battleSize={battleSize}
             secondary={secondary}
             hasInput
             secondaryPoints={battleRoundOneSecondaryPoints}
             getSecondaryPoints={setBattleRoundOneSecondaryPoints}
+            mission={mission}
           />
         );
       case "2":
@@ -279,10 +289,12 @@ const GameTabs = ({
             primaryDescription={primaryDescription}
             getPrimaryCount={setBattleRoundTwoPrimaryPoints}
             edition={edition}
+            battleSize={battleSize}
             secondary={secondary}
             hasInput
             secondaryPoints={battleRoundTwoSecondaryPoints}
             getSecondaryPoints={setBattleRoundTwoSecondaryPoints}
+            mission={mission}
           />
         );
       case "3":
@@ -294,10 +306,12 @@ const GameTabs = ({
             primaryDescription={primaryDescription}
             getPrimaryCount={setBattleRoundThreePrimaryPoints}
             edition={edition}
+            battleSize={battleSize}
             secondary={secondary}
             hasInput
             secondaryPoints={battleRoundThreeSecondaryPoints}
             getSecondaryPoints={setBattleRoundThreeSecondaryPoints}
+            mission={mission}
           />
         );
       case "4":
@@ -309,10 +323,12 @@ const GameTabs = ({
             primaryDescription={primaryDescription}
             getPrimaryCount={setBattleRoundFourPrimaryPoints}
             edition={edition}
+            battleSize={battleSize}
             secondary={secondary}
             hasInput
             secondaryPoints={battleRoundFourSecondaryPoints}
             getSecondaryPoints={setBattleRoundFourSecondaryPoints}
+            mission={mission}
           />
         );
       case "5":
@@ -324,10 +340,12 @@ const GameTabs = ({
             primaryDescription={primaryDescription}
             getPrimaryCount={setBattleRoundFivePrimaryPoints}
             edition={edition}
+            battleSize={battleSize}
             secondary={secondary}
             hasInput
             secondaryPoints={battleRoundFiveSecondaryPoints}
             getSecondaryPoints={setBattleRoundFiveSecondaryPoints}
+            mission={mission}
           />
         );
       default:
@@ -338,8 +356,10 @@ const GameTabs = ({
             primaryTitle={primaryTitle}
             primaryDescription={primaryDescription}
             edition={edition}
+            battleSize={battleSize}
             secondary={secondary}
             secondaryPoints={secondaryCompletePoints}
+            mission={mission}
           />
         );
     }

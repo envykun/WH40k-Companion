@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Mission } from "../../screens/ConfigScreen";
 import { Points, SecondaryPointsProps } from "../../screens/GameScreen";
+import { Editions } from "../../types";
 import { SecondaryPoints } from "../GameTabs/GameTabs";
 import PrimaryPaper from "../PrimaryPaper/PrimaryPaper";
 import SecondaryGamePaper from "../SecondaryGamePaper/SecondaryGamePaper";
@@ -10,11 +12,13 @@ interface Props {
   primaryTitle: string;
   primaryDescription: string;
   getPrimaryCount?: any;
-  edition: string;
+  edition: Editions;
+  battleSize: string;
   secondary: SecondaryPointsProps | undefined;
   getSecondaryPoints?: any;
   secondaryPoints: SecondaryPoints;
   hasInput?: boolean;
+  mission: Mission;
 }
 
 const TabContainerPaper = ({
@@ -23,10 +27,12 @@ const TabContainerPaper = ({
   primaryDescription,
   getPrimaryCount,
   edition,
+  battleSize,
   secondary,
   hasInput,
   getSecondaryPoints,
   secondaryPoints,
+  mission,
 }: Props) => {
   const [valueOne, setValueOne] = useState(secondaryPoints.teamOne.s1);
   const [valueTwo, setValueTwo] = useState(secondaryPoints.teamOne.s2);
@@ -52,8 +58,10 @@ const TabContainerPaper = ({
           primaryTitle={primaryTitle}
           primaryDescription={primaryDescription}
           edition={edition}
+          battleSize={battleSize}
           hasInput={hasInput}
           getPrimaryCount={getPrimaryCount}
+          mission={mission}
         />
       </View>
       <View style={styles.secondary}>
@@ -72,6 +80,7 @@ const TabContainerPaper = ({
           valueFour={valueFour}
           valueFive={valueFive}
           valueSix={valueSix}
+          edition={edition}
         />
       </View>
     </View>

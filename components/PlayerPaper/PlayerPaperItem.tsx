@@ -24,10 +24,10 @@ export interface TeamProps {
 const PlayerPaperItem = ({ team, list, getPlayerData }: Props) => {
   const [name, setName] = useState("");
   const [codex, setCodex] = useState("");
-  const [cp, setCp] = useState("0");
+  const [cp, setCp] = useState("");
 
   useEffect(() => {
-    const data: Player = { name: name, codex: codex, cp: parseInt(cp) };
+    const data: Player = { name: name, codex: codex, cp: cp.length > 0 ? parseInt(cp) : 0 };
     getPlayerData(data);
   }, [name, codex, cp]);
 

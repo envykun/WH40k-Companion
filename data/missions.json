@@ -1,200 +1,687 @@
 {
-    "missions": {
-        "combat": [
-            {
-                "title": "Incisive Strike",
-                "briefing": "Two forces have dug in and fought to a stalemate. Adopting a new approach to the war, opportunistic bands of warriors now venture forth into no man’s land to seize vital ground and defeat the enemy with surgical assaults across the front.",
-                "rules": "Sweep and Clear: In this mission, if you control an objective marker at the end of your Command phase, it remains under your control, even if you have no models within range of it, unless your opponent controls it at the end of any subsequent phase.",
-                "primary": {
-                    "precomment": "Victory points are awarded for controlling objective markers, as follows:",
-                    "keyword": "Take and Hold (Progressive):",
-                    "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
-                    "objectivelist": [
-                        "They control one or more objective markers.",
-                        "They control two or more objective markers.",
-                        "They control more objective markers than their opponent controls."
-                    ],
-                    "postcomment": "This primary objective cannot be scored in the first battle round."
+    "9th: Eternal War": {
+        "missions": {
+            "combat": [
+                {
+                    "title": "Incisive Strike",
+                    "briefing": "Two forces have dug in and fought to a stalemate. Adopting a new approach to the war, opportunistic bands of warriors now venture forth into no man’s land to seize vital ground and defeat the enemy with surgical assaults across the front.",
+                    "rules": "Sweep and Clear: In this mission, if you control an objective marker at the end of your Command phase, it remains under your control, even if you have no models within range of it, unless your opponent controls it at the end of any subsequent phase.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Surgical Assault, below.",
+                        "keyword": "Surgical Assault (Progressive):",
+                        "description": "Score 5 victory points if you control the objective marker in your opponent’s deployment zone at the end of your turn."
+                    }
                 },
-                "secondary": {
-                    "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Surgical Assault, below.",
-                    "keyword": "Surgical Assault (Progressive):",
-                    "description": "Score 5 victory points if you control the objective marker in your opponent’s deployment zone at the end of your turn."
+                {
+                    "title": "Outriders",
+                    "briefing": "Advance parties have ranged ahead of the main force in preparation for a large push into enemy territory. They must scout the area, fight off enemy patrols and secure key locations that will prove vital to hold in the larger battle to come.",
+                    "rules": "",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Survey, below.",
+                        "keyword": "Survey (Progressive):",
+                        "description": "Score 5 victory points if you control both of the objective markers that are not in either player’s deployment zone at the end of your Command phase. This secondary objective cannot be scored in the first battle round."
+                    }
+                },
+                {
+                    "title": "Encircle",
+                    "briefing": "Both forces have converged on this vital location and a firefight has ensued. Neither side is willing to cede ground, but successfully circumventing the enemy’s position will open up a brutal crossfire leaving the objectives for the taking.",
+                    "rules": "",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Encircle, below.",
+                        "keyword": "Encircle (Progressive):",
+                        "description": "Score 3 victory points if you have at least one unit from your army (excluding AIRCRAFT) wholly within 6\" of your battlefield edge and at least one unit from your army (excluding AIRCRAFT) wholly within 6\" of your opponent's battlefield edge at the end of your turn (score 5 victory points instead if one of these units is also wholly within your opponent’s deployment zone)."
+                    }
                 }
+            ],
+            "incursion": [
+                {
+                    "title": "Incisive Strike",
+                    "briefing": "",
+                    "rules": "",
+                    "primary": "",
+                    "secondary": ""
+                }
+            ],
+            "strike": [
+                {
+                    "title": "Incisive Strike",
+                    "briefing": "",
+                    "rules": "",
+                    "primary": "",
+                    "secondary": ""
+                }
+            ],
+            "onslaught": [
+                {
+                    "title": "Incisive Strike",
+                    "briefing": "",
+                    "rules": "",
+                    "primary": "",
+                    "secondary": ""
+                }
+            ]
+        },
+        "secondaries": [
+            {
+                "title": "ASSASSINATE",
+                "type": "End Game Objective",
+                "description": "Score 3 victory points at the end of the battle for each enemy CHARACTER model that is destroyed.",
+                "category": "PURGE THE ENEMY"
             },
             {
-                "title": "Outriders",
-                "briefing": "Advance parties have ranged ahead of the main force in preparation for a large push into enemy territory. They must scout the area, fight off enemy patrols and secure key locations that will prove vital to hold in the larger battle to come.",
-                "rules": "",
-                "primary": {
-                    "precomment": "Victory points are awarded for controlling objective markers, as follows:",
-                    "keyword": "Take and Hold (Progressive):",
-                    "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
-                    "objectivelist": [
-                        "They control one or more objective markers.",
-                        "They control two or more objective markers.",
-                        "They control more objective markers than their opponent controls."
-                    ],
-                    "postcomment": "This primary objective cannot be scored in the first battle round."
-                },
-                "secondary": {
-                    "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Survey, below.",
-                    "keyword": "Survey (Progressive):",
-                    "description": "Score 5 victory points if you control both of the objective markers that are not in either player’s deployment zone at the end of your Command phase. This secondary objective cannot be scored in the first battle round."
-                }
+                "title": "BRING IT DOWN",
+                "type": "End Game Objective",
+                "description": "Score 2 victory points at the end of the battle for each enemy MONSTER or VEHICLE model with a Wounds characteristic of 10 or less that is destroyed, and 3 victory points for each enemy MONSTER or VEHICLE model with a Wounds characteristic of 11 or more that is destroyed.",
+                "category": "PURGE THE ENEMY"
             },
             {
-                "title": "Encircle",
-                "briefing": "Both forces have converged on this vital location and a firefight has ensued. Neither side is willing to cede ground, but successfully circumventing the enemy’s position will open up a brutal crossfire leaving the objectives for the taking.",
-                "rules": "",
-                "primary": {
-                    "precomment": "Victory points are awarded for controlling objective markers, as follows:",
-                    "keyword": "Take and Hold (Progressive):",
-                    "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
-                    "objectivelist": [
-                        "They control one or more objective markers.",
-                        "They control two or more objective markers.",
-                        "They control more objective markers than their opponent controls."
-                    ],
-                    "postcomment": "This primary objective cannot be scored in the first battle round."
-                },
-                "secondary": {
-                    "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Encircle, below.",
-                    "keyword": "Encircle (Progressive):",
-                    "description": "Score 3 victory points if you have at least one unit from your army (excluding AIRCRAFT) wholly within 6\" of your battlefield edge and at least one unit from your army (excluding AIRCRAFT) wholly within 6\" of your opponent's battlefield edge at the end of your turn (score 5 victory points instead if one of these units is also wholly within your opponent’s deployment zone)."
-                }
-            }
-        ],
-        "incursion": [
+                "title": "TITAN SLAYERS",
+                "type": "End Game Objective",
+                "description": "Score 10 victory points at the end of the battle if one enemy TITANIC model is destroyed, or 15 victory points if two or more enemy TITANIC models are destroyed.",
+                "category": "PURGE THE ENEMY"
+            },
             {
-                "title": "Incisive Strike",
-                "briefing": "",
-                "rules": "",
-                "primary": "",
-                "secondary": ""
-            }
-        ],
-        "strike": [
+                "title": "SLAY THE WARLORD",
+                "type": "End Game Objective",
+                "description": "Score 6 victory points at the end of the battle if the enemy WARLORD is destroyed.",
+                "category": "PURGE THE ENEMY"
+            },
             {
-                "title": "Incisive Strike",
-                "briefing": "",
-                "rules": "",
-                "primary": "",
-                "secondary": ""
-            }
-        ],
-        "onslaught": [
+                "title": "THIN THEIR RANKS",
+                "type": "End Game Objective",
+                "description": "If you select this objective, keep a tally of kill points; each time an enemy model is destroyed, add 1 to this tally (add 10 to this tally instead if the model that was destroyed had a Wounds characteristic of 10 or more). A model can, if it is resurrected for any reason (i.e. it was destroyed and subsequently returned to the battlefield), potentially add several points to this tally (assuming it is resurrected and subsequently destroyed several times over). At the end of the battle, divide your kill points tally by 10 and round down - the result is the number of victory points you score.",
+                "category": "NO MERCY, NO RESPITE"
+            },
             {
-                "title": "Incisive Strike",
-                "briefing": "",
-                "rules": "",
-                "primary": "",
-                "secondary": ""
+                "title": "ATTRITION",
+                "type": "Progressive Objective",
+                "description": "Score 4 victory points at the end of the battle round if more enemy units than friendly units were destroyed this battle round.",
+                "category": "NO MERCY, NO RESPITE"
+            },
+            {
+                "title": "WHILE WE STAND, WE FIGHT",
+                "type": "End Game Objective",
+                "description": "If you select this objective, then before the battle you must identify which three units from your army (excluding models with the Fortifications Battlefield Role) have the highest points value, and make a note of them on your army roster (if two or more units are tied, you can choose between them). If your army has three or fewer units, then you instead identify all the units in your army. A unit’s points cost includes the points of all weapons and wargear it is equipped with. You score 5 victory points for each of these units that are on the battlefield at the end of the battle. If a unit splits into several smaller units during the battle, all of those separate units (excluding DRONES units) must be destroyed for the original unit to count as being destroyed for the purposes of this secondary objective.",
+                "category": "NO MERCY, NO RESPITE"
+            },
+            {
+                "title": "FIRST STRIKE",
+                "type": "End Game Objective",
+                "description": "Score 5 victory points at the end of the battle if any enemy units were destroyed in the first battle round, and score an additional 3 victory points if more enemy units than friendly units were destroyed in the first battle round.",
+                "category": "NO MERCY, NO RESPITE"
+            },
+            {
+                "title": "ENGAGE ON ALL FRONTS",
+                "type": "Progressive Objective",
+                "description": "Score 2 victory points at the end of your turn if you have one or more units from your army wholly within three different table quarters, and those units are all more than 6\" from the centre of the battlefield. Score 3 victory points instead if you have one or more units from your army wholly within each table quarter, and those units are all more than 6\" from the centre of the battlefield.",
+                "category": "BATTLEFIELD SUPREMACY"
+            },
+            {
+                "title": "LINEBREAKER",
+                "type": "Progressive Objective",
+                "description": "Score 4 victory points at the end of your turn if two or more units from your army (excluding AIRCRAFT) are wholly within your opponent's deployment zone.",
+                "category": "BATTLEFIELD SUPREMACY"
+            },
+            {
+                "title": "DOMINATION",
+                "type": "Progressive Objective",
+                "description": "Score 3 victory points if you control more than half the total number of objective markers on the battlefield at the end of your turn.",
+                "category": "BATTLEFIELD SUPREMACY"
+            },
+            {
+                "title": "INVESTIGATE SITES",
+                "type": "Progressive Objective",
+                "description": "Score 3 victory points each time a unit from your army successfully completes the following action: Investigate Site (Action): One INFANTRY unit (excluding CHARACTERS) from your army can start to perform this action at the end of your Movement phase if it is within 6\" of the centre of the battlefield and no enemy units (excluding AIRCRAFT) are within 6\" of the centre of the battlefield. The Action is completed at the end of your turn.",
+                "category": "SHADOW OPERATIONS"
+            },
+            {
+                "title": "REPAIR TELEPORT HOMER",
+                "type": "Progressive Objective",
+                "description": "Score 5 victory points each time a unit from your army successfully completes the following action: Repair Teleport Homer (Action): One INFANTRY unit from your army can start to perform this action at the end of your Movement phase if it is wholly within your opponent's deployment zone. The Action is completed at the end of your next Command phase provided the unit attempting it is still wholly within your opponent's deployment zone.",
+                "category": "SHADOW OPERATIONS"
+            },
+            {
+                "title": "RAISE THE BANNERS HIGH",
+                "type": "Progressive and End Game Objective",
+                "description": "If you select this objective, then units in your army can perform the following action: Raise Banners (Action): One or more INFANTRY units from your army can start to perform this action at the end of your Movement phase. Each unit from your army that starts to perform this action must be in range of a different objective marker that does not have one of your banners raised upon it (see below). A unit cannot start this action while there are any enemy units (excluding AIRCRAFT) in range of the same objective marker. The Action is completed at the end of your turn. If this Action is successfully completed, that objective marker is said to have one of your army’s banners raised on it (the banner is ‘removed’ if your opponent controls the objective marker at the start of any phase). You score 1 victory point at the end of each of your Command phases, and 1 victory point at the end of the battle, for each objective marker on the battlefield that has one of your banners raised upon it.",
+                "category": "SHADOW OPERATIONS"
+            },
+            {
+                "title": "MENTAL INTERROGATION",
+                "type": "Progressive Objective",
+                "description": "Score 3 victory points each time you successfully complete the following psychic action: Mental Interrogation (Psychic Action - Warp Charge 4): One PSYKER CHARACTER from your army can attempt to perform this psychic action in your Psychic phase if it is within 18\" of any enemy CHARACTER models.",
+                "category": "WARPCRAFT"
+            },
+            {
+                "title": "PSYCHIC RITUAL",
+                "type": "End Game Objective",
+                "description": "Score 15 victory points at the end of the battle if any unit from your army successfully completed the following psychic action 3 times during the battle: Psychic Ritual (Psychic Action - Warp Charge 3): One PSYKER CHARACTER unit from your army can attempt to perform this psychic action in your Psychic phase if it is within 6\" of the centre of the battlefield.",
+                "category": "WARPCRAFT"
+            },
+            {
+                "title": "ABHOR THE WITCH",
+                "type": "End Game Objective",
+                "description": "You cannot select this secondary objective if your army includes any PSYKER units. Score 5 victory points at the end of the battle for each enemy PSYKER CHARACTER unit that is destroyed, and 3 victory points for every other enemy PSYKER unit that is destroyed.",
+                "category": "WARPCRAFT"
             }
         ]
     },
-    "secondaries": [
-        {
-            "title": "ASSASSINATE",
-            "type": "End Game Objective",
-            "description": "Score 3 victory points at the end of the battle for each enemy CHARACTER model that is destroyed.",
-            "category": "PURGE THE ENEMY"
+    "Grand Tournament 2021": {
+        "missions": {
+            "incursion": [
+                {
+                    "title": "Crossfire",
+                    "briefing": "Enemy forces are massing in the area, seeking to secure the battlefield. A direct assault against them may result in unacceptable casualties, but victory can be assured by outflanking the foe and catching them in a deadly crossfire.",
+                    "rules": "Crossfire: When resolving attacks against target units that are within 9\" of the centre of the battlefield, those attacks ignore the benefits of cover provided you can satisfy at least one of the following conditions: 1) You control both objective markers labelled A and the attacking model’s unit is in range of an objective marker labelled A. 2) You control both objective markers labelled B and the attacking model’s unit is in range of an objective marker labelled B.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Outflank (see below).",
+                        "keyword": "Outflank (Progressive):",
+                        "description": "At the end of your Command phase, you score 3 victory points if you control both of the objective markers labelled A. Score 5 victory points instead if, at the end of your Command phase, you control both of the objective markers labelled A and there is at least one enemy unit within 9\" of the centre of the battlefield. This secondary objective cannot be scored in the first battle round."
+                    }
+                },
+                {
+                    "title": "Resupply",
+                    "briefing": "Braving the flak batteries of the foe, your best pilots are inbound with supplies to drop down to your beleaguered forces. You must race your enemy to the prize, driving them away from the drop coordinates and seizing the supplies as they land.",
+                    "rules": "Drop Zone Repleted: After choosing deployment zones, the Defender randomly selects one objective marker that is not in either player’s deployment zone to be the Gamma objective marker. They then randomly select one of the two remaining objective markers that are not in either player’s deployment zone to be the Beta objective marker. At the start of the fourth battle round, the Gamma objective marker is removed from the battlefield. At the start of the fifth battle round, the Beta objective marker is removed from the battlefield.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Secure Landing Sites (see below).",
+                        "keyword": "Secure Landing Sites (Progressive):",
+                        "description": "Score a number of victory points at the end of your Command phase for each objective marker labelled A that you control, as shown in the table below (note that the victory points scored changes depending upon the battle round number): This secondary objective cannot be scored in the first battle round."
+                    }
+                },
+                {
+                    "title": "Raid",
+                    "briefing": "After a prolonged campaign of bloodshed that has resulted in a stalemate, both sides are running low on supplies. In order to break the deadlock you must launch a daring assault into enemy territory to raid the enemy’s supply lines, whilst also recovering any other war materiel you discover in the vicinity.",
+                    "rules": "Recover Supply Cache: In this mission, a player receives one additional Command point at the start of their Command phase if they control one or both of the objective markers in their opponent’s deployment zone (this is in addition to the Battle-forged CP bonus).",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Domination (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control two or more objective markers.",
+                            "They control three or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Raid Supply Lines (see below).",
+                        "keyword": "Raid Supply Lines (Progressive):",
+                        "description": "At the end of each of your Command phases, you score 3 victory points if you control one of the objective markers that is in your opponent’s deployment zone, or 5 victory points if you control both of the objective markers that are in your opponent’s deployment zone. This secondary objective cannot be scored in the first battle round."
+                    }
+                },
+                {
+                    "title": "Centre Ground",
+                    "briefing": "You must advance swiftly into contested territory to seize the battlefield whilst maintaining a strong rearguard to protect your supply lines. The battleground is won and lost one yard at a time, and a commander must simultaneously master offensive and defensive tactics if they are to prevail.",
+                    "rules": "",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Centre Ground (see below).",
+                        "keyword": "Centre Ground (Progressive):",
+                        "description": "Each time a unit from your army successfully completes the following action, you score 3 victory points if you currently control one of the objective markers labelled A, or 5 victory points if you currently control both objectie markers labelled A:Centre Ground (Action): One unit from your army can start to perform this action at the end of your Movement phase if it is within range of an objective marker labelled A and no enemy units (excluding AIRCRAFT) are within range of that objective marker. The action is completed at the end of your next Command phase, so long as the unit performing it is still within range of the same objective marker."
+                    }
+                },
+                {
+                    "title": "Ascension",
+                    "briefing": "This battlefield houses sites of great import. Honour and power will be bestowed upon a warlord mighty enough to claim it. The leaders of your army must seize this site, whilst ensuring it is denied to the enemy.",
+                    "rules": "Champion’s Honour: With the exception of your WARLORD, if a unit has a pre-game ability that enables it to be set up anywhere on the battlefield, that unit must still be set up wholly within your deployment zone. With the exception of your WARLORD, if a unit has a pre-game ability that enables it to make a move, it must end that move wholly within your deployment zone. In addition, your WARLORD has the Objective Secured ability whilst they are within range of the central objective marker.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Ascend (see below).",
+                        "keyword": "Ascend (Progressive):",
+                        "description": "At the end of each of your turns, if you control the central objective marker you score a number of victory points equal to the current battle round number (so 1 victory point in the first battle round, 2 victory points in the second battle round, etc.). In addition, at the end of each of your turns you score 1 victory point if your WARLORD is within range of the central objective marker."
+                    }
+                },
+                {
+                    "title": "Forward Push",
+                    "briefing": "This area is of extreme importance and you have been ordered to push forward and lead an immediate, all out assault to capture it. Storm every site of tactical import and leave the foe with no place to hide.",
+                    "rules": "Quick March: Any Advance rolls of less than 3 made in the first battle round instead count as 3.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Forward Push (see below).",
+                        "keyword": "Forward Push (Progressive):",
+                        "description": "If you select this objective, then units in your army can perform the following action:Forward Push (Action): One unit from your army can start to perform this action at the start of your Movement phase if it is within range of an objective marker that you control. The action is completed at the end of your turn and you score a number of victory points depending on which objective marker this action was performed on:"
+                    }
+                },
+                {
+                    "title": "Rise of the Machine Spirit",
+                    "briefing": "An ancient and deadly war-fortress lies dormant in orbit, but if you can inload the correct data-psalms at key locations, its machine spirit will awaken under our control.",
+                    "rules": "Binharic Interference: In this mission, Reinforcement units cannot be set up within range of any objective markers.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Inload Data-psalm (see below).",
+                        "keyword": "Inload Data-psalm (Progressive):",
+                        "description": "If you select this objective, then units in your army can perform the following action: Inload Data-psalm (Action): One or more units from your perform this action at the end of your Movement phase. Each unit that starts to perform this action must be within range of a different objective marker. A unit cannot start this action while any enemy units (excluding AIRCRAFT) are in range of the same objective marker. This action is completed at the end of your next Command phase, and you score a number of victory points depending on how many units completed this action this phase, as shown in the table below:"
+                    }
+                },
+                {
+                    "title": "Show of Force",
+                    "briefing": "You have been ordered to conduct an opportunistic assault to expand our territory. Take control of vital tactical sites and crush any who oppose you, but be careful to minimise your own losses, lest your forces be unable to consolidate and secure the newly won ground.",
+                    "rules": "",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Minimise Losses (see below).",
+                        "keyword": "Minimise Losses (Progressive):",
+                        "description": "At the start of the battle, add up the number of units in your army - this is your army’s Strength. If a unit splits to form two or more individual units during the battle, then immediately increase your army’s Strength accortlingly (e.g. if one unit in your army splits to form three individual units, your army’s Strength is increased by 2). If a unit merges with another to form a combined unit during the battle, then decrease your army’s Strength accordingly (e.g. if two units from your army merge to form one unit, you immediately decrease your army’s Strength by 1). At the end of the battle, add up how many units from your army are left on the battlefield, including all units embarked within TRANSPORTS, but excluding all units that have been added to your army during the battle. If the total is 75% or more of your army’s Strength, score 15 victory points; if the total is less than 75%, but is 50% or more of your army’s Strength, score 10 victory points; if the total is less than 50%, but is 25% or more of your army’s Strength, score 5 victory points."
+                    }
+                },
+                {
+                    "title": "Reconaissance Mission",
+                    "briefing": "You have been detailed to conduct vital reconnaissance ahead of a major offensive, but enemy patrols are also operating in this area. Use your rapid response units to secure tactical sites and conduct recon scans quickly, whilst your supporting forces destroy any hostiles you encounter.",
+                    "rules": "Recon Units: Units that have the Fast Attack Battlefield Role have the Objective Secured ability.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Recon Sweep (see below).",
+                        "keyword": "Recon Sweep (Progressive):",
+                        "description": "If you select this objective, then units in your army can perform the following action: Recon Sweep (Action): One unit from your army can start to perform this action at the start of your Movement phase, if it is wholly within a table quarter that has not already been reconnoitred by a unit from your army and it is more than 9 Inch from the centre of the battlefield. The action is completed at the end of your turn and, provided the unit is still wholly within that table quarter, that table quarter is said to have been reconnoitred by your forces. You score a number of victory points for the number of table quarters that have been reconnoitred by your forces by the end of the battle, as shown below:"
+                    }
+                }
+            ],
+            "strike": [
+                {
+                    "title": "Retrieval Mission",
+                    "briefing": "The battlefield is strewn with discarded equipment, supplies and other detritus of war that, for various reasons, you wish to recover. You must reclaim as many of these vital objectives as you can without sustaining unacceptable casualties in the process.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Minimise Losses (see below).",
+                        "keyword": "Minimise Losses (End Game Objective):",
+                        "description": "At the start of the battle, add up the number of units in your army - this is your army’s Strength. If a unit splits to form two or more individual units during the battle, then immediately increase your army’s Strength accortlingly (e.g. if one unit in your army splits to form three individual units, your army’s Strength is increased by 2). If a unit merges with another to form a combined unit during the battle, then decrease your army’s Strength accordingly (e.g. if two units from your army merge to form one unit, you immediately decrease your army’s Strength by 1). At the end of the battle, add up how many units from your army are left on the battlefield, including all units embarked within TRANSPORTS, but excluding all units that have been added to your army during the battle. If the total is 75% or more of your army’s Strength, score 15 victory points; if the total is less than 75%, but is 50% or more of your army’s Strength, score 10 victory points; if the total is less than 50%, but is 25% or more of your army’s Strength, score 5 victory points."
+                    }
+                },
+                {
+                    "title": "Scorched Earth",
+                    "briefing": "The time for a decisive strike against the foe is nigh. Key targets have been identified and their continued existence can no longer be tolerated. Spread ruination throughout the enemy’s territory and leave nothing but heaped corpses and blazing wreckage in your wake!",
+                    "rules": "Raze Objective (Action): One unit from your army can start to perform this action at the start of your Movement phase if it is within range of an objective marker that can be razed and no enemy units (excluding AIRCRAFT) are within range of that objective marker. Player A can only attempt to raze the objective markers labelled B, and player B can only attempt to raze the objective markers labelled A. This action is completed at the end of your turn. If this action is successfully completed, that objective marker is razed and removed from the battlefield.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Raze (see below).",
+                        "keyword": "Raze (End Game Objective):",
+                        "description": "At the end of the battle, a player scores 6 victory points if one objective marker was removed from the battlefield due to a successful Raze Objective action performed by a unit from their army during the battle, and 12 victory point if two objective markers were so removed."
+                    }
+                },
+                {
+                    "title": "Vital Intelligence",
+                    "briefing": "Important tactical information must be captured. Key data-terminals have been detected, but the machine spirits of several must be slaved to your data-tethers at the same time if you are to intercept the intelligence you need.",
+                    "rules": "Data Terminals: The objective markers in this mission represent data terminals. In this mission, if you control an objective marker at the end of your Command phase, it remains under your control unless your opponent controls it at the end of any subsequent phase, even if you have no models within range of it.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Domination (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control two or more objective markers.",
+                            "They control three or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Data Intercept (see below).",
+                        "keyword": "Intercept (Progressive Objective):",
+                        "description": "Each time a unit from your army successfully completes the following action, you score a number of victory points equal to the number of objective markers you currently control: Data Intercept (Action): One unit from your army can start to perform this action at the end of your Movement phase if it is within range of an objective marker and no enemy units (excluding AIRCRAFT) are within range of that objective marker. This action is completed at the end of your next Command phase, so long as the unit performing it is still within range of the same objective marker."
+                    }
+                },
+                {
+                    "title": "Surround and Destroy",
+                    "briefing": "The time to crush your enemy once and for all is at hand. Maintain a strong rearguard whilst your vanguard forces sweep past the foe’s flanks to surround them and cut off their means of escape. Then, let the slaughter begin.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Surround Them (see below).",
+                        "keyword": "Surround Them (Progressive and End Game Objective):",
+                        "description": "Score 4 victory points at the end of your Command phase, and at the end of the battle if you control both the objective markers in your deployment zone and one or more objective markers in your opponent’s deployment zone. Score 8 victory points instead if you control all four objective markers that are in deployment zones."
+                    }
+                },
+                {
+                    "title": "Battle Lines",
+                    "briefing": "Two armies approach the same battlefield, determined to capture the vital strategic ground that separates their battle lines and, if possible, strike deep into enemy territory to deal the foe a devastating blow.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Vital Ground (see below).",
+                        "keyword": "Vital Ground (Progressive Objective):",
+                        "description": "At the end of each of your Command phases, you score 3 victory points if you control the objective marker in your opponent’s deployment zone, and score 2 victory points for each objective marker that you control that is not in either player’s deployment zone (for a maximum of 7 victory points). This secondary objective cannot be scored in the first battle round."
+                    }
+                },
+                {
+                    "title": "The Scouring",
+                    "briefing": "Both sides are sweeping through the area, tasking scout units to identify and scan sites of strategic import. However, not all sites are of equal worth - victory will go to the warlord who can secure the most valuable sites and cripple the enemy’s ability to locate others.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Domination (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control two or more objective markers.",
+                            "They control three or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Strategic Scan (see below).",
+                        "keyword": "Strategic Scan (End Game Objective):",
+                        "description": "If you select this objective, then units in your army can perform the following action: Strategic Scan (Action): One or more units from your army can start to perform this action at the end of your Movement phase. Each unit from your army that starts to perform this action must be in range of a different objective marker that has not already been scanned by a unit from your army (see below). A unit cannot start this action while there are any enemy units (excluding AIRCRAFT) in range of the same objective marker. This action is completed at the start of your next Command phase, or at the end of the battle (whichever happens first). If this action is successfully completed, that objective marker is said to have been scanned by your army. You score a number of victory points at the end of the battle depending on how many times units from your army completed this action this battle, as shown in the table below:"
+                    }
+                },
+                {
+                    "title": "Overrun",
+                    "briefing": "Two forces are converging on the battlefield at breakneck speed, determined to smash aside their foes and take control of this region in one fell swoop. If one side can break through the other’s spearhead before support forces can establish a beachhead, the enemy’s front will be completely overrun.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Domination (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control two or more objective markers.",
+                            "They control three or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Overrun (see below).",
+                        "keyword": "Overrun (Progressive Objective):",
+                        "description": "Score a number of victory points at the end of your Command phase if you control one or more of the objective markers that are within your opponent’s territory, as shown in the table below:"
+                    }
+                },
+                {
+                    "title": "Sweep and Clear",
+                    "briefing": "Both forces are moving forward to capture as much ground as possible, cleansing objectives of enemies as they move. Some warlords prefer a systematic sweep of the surrounding areas, whilst others favour a more bold, direct attack into the heart of the enemy lines.",
+                    "rules": "Objective Cleared: In this mission, if you control an objective marker at the end of your Command phase, it remains under your control unless your opponent controls it at the end of any subsequent phase, even if you have no models within range of it.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Direct Assault (see below).",
+                        "keyword": "Direct Assault (Progressive Objective):",
+                        "description": "Score 3 victory points if you control either the objective marker in the centre of the battlefield or the objective marker in your opponent’s deployment zone at the end of your turn, or 5 victory points if you control both of these objective markers at the end of your turn."
+                    }
+                },
+                {
+                    "title": "Priority Target",
+                    "briefing": "Intel reports indicate precious cargo is being transported through this region, but the exact whereabouts of these targets is yet to be confirmed. Locate and secure these sites at all costs.",
+                    "rules": "Priority Objectives: After players have chosen their deployment zones, but before they declare reserves and transports, the players reposition the objective markers labelled A and B as described below: First, the Attacker repositions either one objective marker labelled A or one objective marker labelled B. Secondly, the Defender repositions one objective marker labelled A and one objective marker labelled B (an objective marker cannot be repositioned more than once). Finally, the Attacker repositions the last objective marker labelled A or B that has yet to be repositioned. In all cases, when an objective marker is repositioned, you set it up wholly within 6\" horizontally of its original position, and not on or within any Obstacles or Defensible terrain features. After all objective markers have been repositioned, each player secretly notes down one of the objective markers that is within their own territory to be a Priority Objective Marker (this cannot be the objective marker in the centre of the battlefield). After both players have done so, they reveal their choices to their opponent.",
+                    "primary": {
+                        "precomment": "Victory points are awarded for controlling objective markers, as follows:",
+                        "keyword": "Take and Hold (Progressive):",
+                        "description": "At the end of each player’s Command phase, the player whose turn it is scores 5 victory points for each of the following conditions they satisfy (for a maximum of 15 victory points):",
+                        "objectivelist": [
+                            "They control one or more objective markers.",
+                            "They control two or more objective markers.",
+                            "They control more objective markers than their opponent controls."
+                        ],
+                        "postcomment": "This primary objective cannot be scored in the first battle round. In the fifth battle round, the player who has the second turn does not score any victory points at the end of their Command phase; instead, at the end of their turn, they score 5 victory points for each of the above conditions they satisfy (for a maximum of 15 victory points)."
+                    },
+                    "secondary": {
+                        "precomment": "In this mission, when the players are selecting their secondary objectives, they can, if they wish, choose for one of them to be Priority Targets (see below).",
+                        "keyword": "Priority Targets (Progressive Objective):",
+                        "description": "Score 3 victory points if you control either of the Priority Objective Markers (see above) at the end of your turn, or 5 victory points if you control both of these objective markers at the end of your turn."
+                    }
+                }
+            ]
         },
-        {
-            "title": "BRING IT DOWN",
-            "type": "End Game Objective",
-            "description": "Score 2 victory points at the end of the battle for each enemy MONSTER or VEHICLE model with a Wounds characteristic of 10 or less that is destroyed, and 3 victory points for each enemy MONSTER or VEHICLE model with a Wounds characteristic of 11 or more that is destroyed.",
-            "category": "PURGE THE ENEMY"
-        },
-        {
-            "title": "TITAN SLAYERS",
-            "type": "End Game Objective",
-            "description": "Score 10 victory points at the end of the battle if one enemy TITANIC model is destroyed, or 15 victory points if two or more enemy TITANIC models are destroyed.",
-            "category": "PURGE THE ENEMY"
-        },
-        {
-            "title": "SLAY THE WARLORD",
-            "type": "End Game Objective",
-            "description": "Score 6 victory points at the end of the battle if the enemy WARLORD is destroyed.",
-            "category": "PURGE THE ENEMY"
-        },
-        {
-            "title": "THIN THEIR RANKS",
-            "type": "End Game Objective",
-            "description": "If you select this objective, keep a tally of kill points; each time an enemy model is destroyed, add 1 to this tally (add 10 to this tally instead if the model that was destroyed had a Wounds characteristic of 10 or more). A model can, if it is resurrected for any reason (i.e. it was destroyed and subsequently returned to the battlefield), potentially add several points to this tally (assuming it is resurrected and subsequently destroyed several times over). At the end of the battle, divide your kill points tally by 10 and round down - the result is the number of victory points you score.",
-            "category": "NO MERCY, NO RESPITE"
-        },
-        {
-            "title": "ATTRITION",
-            "type": "Progressive Objective",
-            "description": "Score 4 victory points at the end of the battle round if more enemy units than friendly units were destroyed this battle round.",
-            "category": "NO MERCY, NO RESPITE"
-        },
-        {
-            "title": "WHILE WE STAND, WE FIGHT",
-            "type": "End Game Objective",
-            "description": "If you select this objective, then before the battle you must identify which three units from your army (excluding models with the Fortifications Battlefield Role) have the highest points value, and make a note of them on your army roster (if two or more units are tied, you can choose between them). If your army has three or fewer units, then you instead identify all the units in your army. A unit’s points cost includes the points of all weapons and wargear it is equipped with. You score 5 victory points for each of these units that are on the battlefield at the end of the battle. If a unit splits into several smaller units during the battle, all of those separate units (excluding DRONES units) must be destroyed for the original unit to count as being destroyed for the purposes of this secondary objective.",
-            "category": "NO MERCY, NO RESPITE"
-        },
-        {
-            "title": "FIRST STRIKE",
-            "type": "End Game Objective",
-            "description": "Score 5 victory points at the end of the battle if any enemy units were destroyed in the first battle round, and score an additional 3 victory points if more enemy units than friendly units were destroyed in the first battle round.",
-            "category": "NO MERCY, NO RESPITE"
-        },
-        {
-            "title": "ENGAGE ON ALL FRONTS",
-            "type": "Progressive Objective",
-            "description": "Score 2 victory points at the end of your turn if you have one or more units from your army wholly within three different table quarters, and those units are all more than 6\" from the centre of the battlefield. Score 3 victory points instead if you have one or more units from your army wholly within each table quarter, and those units are all more than 6\" from the centre of the battlefield.",
-            "category": "BATTLEFIELD SUPREMACY"
-        },
-        {
-            "title": "LINEBREAKER",
-            "type": "Progressive Objective",
-            "description": "Score 4 victory points at the end of your turn if two or more units from your army (excluding AIRCRAFT) are wholly within your opponent's deployment zone.",
-            "category": "BATTLEFIELD SUPREMACY"
-        },
-        {
-            "title": "DOMINATION",
-            "type": "Progressive Objective",
-            "description": "Score 3 victory points if you control more than half the total number of objective markers on the battlefield at the end of your turn.",
-            "category": "BATTLEFIELD SUPREMACY"
-        },
-        {
-            "title": "INVESTIGATE SITES",
-            "type": "Progressive Objective",
-            "description": "Score 3 victory points each time a unit from your army successfully completes the following action: Investigate Site (Action): One INFANTRY unit (excluding CHARACTERS) from your army can start to perform this action at the end of your Movement phase if it is within 6\" of the centre of the battlefield and no enemy units (excluding AIRCRAFT) are within 6\" of the centre of the battlefield. The Action is completed at the end of your turn.",
-            "category": "SHADOW OPERATIONS"
-        },
-        {
-            "title": "REPAIR TELEPORT HOMER",
-            "type": "Progressive Objective",
-            "description": "Score 5 victory points each time a unit from your army successfully completes the following action: Repair Teleport Homer (Action): One INFANTRY unit from your army can start to perform this action at the end of your Movement phase if it is wholly within your opponent's deployment zone. The Action is completed at the end of your next Command phase provided the unit attempting it is still wholly within your opponent's deployment zone.",
-            "category": "SHADOW OPERATIONS"
-        },
-        {
-            "title": "RAISE THE BANNERS HIGH",
-            "type": "Progressive and End Game Objective",
-            "description": "If you select this objective, then units in your army can perform the following action: Raise Banners (Action): One or more INFANTRY units from your army can start to perform this action at the end of your Movement phase. Each unit from your army that starts to perform this action must be in range of a different objective marker that does not have one of your banners raised upon it (see below). A unit cannot start this action while there are any enemy units (excluding AIRCRAFT) in range of the same objective marker. The Action is completed at the end of your turn. If this Action is successfully completed, that objective marker is said to have one of your army’s banners raised on it (the banner is ‘removed’ if your opponent controls the objective marker at the start of any phase). You score 1 victory point at the end of each of your Command phases, and 1 victory point at the end of the battle, for each objective marker on the battlefield that has one of your banners raised upon it.",
-            "category": "SHADOW OPERATIONS"
-        },
-        {
-            "title": "MENTAL INTERROGATION",
-            "type": "Progressive Objective",
-            "description": "Score 3 victory points each time you successfully complete the following psychic action: Mental Interrogation (Psychic Action - Warp Charge 4): One PSYKER CHARACTER from your army can attempt to perform this psychic action in your Psychic phase if it is within 18\" of any enemy CHARACTER models.",
-            "category": "WARPCRAFT"
-        },
-        {
-            "title": "PSYCHIC RITUAL",
-            "type": "End Game Objective",
-            "description": "Score 15 victory points at the end of the battle if any unit from your army successfully completed the following psychic action 3 times during the battle: Psychic Ritual (Psychic Action - Warp Charge 3): One PSYKER CHARACTER unit from your army can attempt to perform this psychic action in your Psychic phase if it is within 6\" of the centre of the battlefield.",
-            "category": "WARPCRAFT"
-        },
-        {
-            "title": "ABHOR THE WITCH",
-            "type": "End Game Objective",
-            "description": "You cannot select this secondary objective if your army includes any PSYKER units. Score 5 victory points at the end of the battle for each enemy PSYKER CHARACTER unit that is destroyed, and 3 victory points for every other enemy PSYKER unit that is destroyed.",
-            "category": "WARPCRAFT"
-        }
-    ]
+        "secondaries": [
+            {
+                "title": "ENGAGE ON ALL FRONTS",
+                "type": "Progressive Objective",
+                "description": "Score 2 victory points at the end of your turn if you have one or more units from your army wholly within three different table quarters, and those units are all more than 6\" from the centre of the battlefield. Score 3 victory points instead if you have one or more units from your army wholly within each table quarter, and those units are all more than 6\" from the centre of the battlefield.",
+                "category": "BATTLEFIELD SUPREMACY"
+            },
+            {
+                "title": "BEHIND ENEMY LINES",
+                "type": "Progressive Objective",
+                "description": "Score 2 victory points at the end of your turn if one unit from your army (excluding AIRCRAFT units) is wholly within your opponent’s deployment zone. Score 4 victory points at the end of your turn instead if two or more units from your army (excluding AIRCRAFT units) are wholly within your opponent’s deployment zone.",
+                "category": "BATTLEFIELD SUPREMACY"
+            },
+            {
+                "title": "STRANGLEHOLD",
+                "type": "Progressive Objective",
+                "description": "Score 3 victory points at the end of your turn if you control 3 or more objective markers and you also control more objective marker than your opponent controls.",
+                "category": "BATTLEFIELD SUPREMACY"
+            },
+            {
+                "title": "NO PRISONERS",
+                "type": "End Game Objective",
+                "description": "If you select this objective, keep a tally of kill points. Each time an enemy model is destroyed, unless that model is a VEHICLE, MONSTER or CHARACTER, add a number of marks to this tally equal to the Wounds characteristic of the destroyed model. A model can, if it is resurrected for any reason (i.e. it was destroyed and subsequently returned to the battlefield), potentially have marks added to this tally several times (assuming it is resurrected and subsequently destroyed several times over). At the end of the battle, divide your kill points tally by 10 and round down - the result is the number of victory points you score.",
+                "category": "NO MERCY, NO RESPITE"
+            },
+            {
+                "title": "GRIND THEM DOWN",
+                "type": "Progressive Objective",
+                "description": "Score 3 victory points at the end of the battle round if more enemy units than friendly units were destroyed this battle round.",
+                "category": "NO MERCY, NO RESPITE"
+            },
+            {
+                "title": "TO THE LAST",
+                "type": "End Game Objective",
+                "description": "If you select this objective, then before the battle, after you have selected deployment zones, identify which three units from your army (excluding those with the Fortifications Battlefield Role) have the highest points value, and make a note of them on your army roster (if two or more are tied, you choose between them). If your army has three or fewer units, you instead identify all the units in your army. A unit’s points value includes the points of all weapons, other wargear and upgrades it has. You score 5 victory points for each of these units that are on the battlefield at the end of the battle. If a unit splits into several smaller units during a battle, all of those separate units (excluding DRONE units) must be on the battlefield at the end of the battle to score 5 victory points; if some of those separate units (excluding DRONE units) are on the battlefield at the end of the battle, but not all of them are, you score 3 victory points instead of 5.",
+                "category": "NO MERCY, NO RESPITE"
+            },
+            {
+                "title": "RAISE THE BANNERS HIGH",
+                "type": "Progressive and End Game Objective",
+                "description": "If you select this objective, then units in your army can perform the following action: Raise Banners (Action): One or more INFANTRY units from your army can start to perform this action at the end of your Movement phase. Each unit from your army that starts to perform this action must be in range of a different objective marker that does not have one of your banners raised upon it (see below). A unit cannot start this action while there are any enemy units (excluding AIRCRAFT) in range of the same objective marker. The action is completed at the end of your turn. If this action is successfully completed, that objective marker is said to have one of your army’s banners raised on it (the banner is ‘removed’ if your opponent controls the objective marker at the start of any phase). Score 1 victory point at the end of each of your Command phases, and 1 victory point at the end of the battle, for each objective marker on the battlefield that has one of your banners raised upon it.",
+                "category": "SHADOW OPERATIONS"
+            },
+            {
+                "title": "INVESTIGATE SIGNAL",
+                "type": "Progressive Objective",
+                "description": "Score 3 victory points each time a unit from your army successfully completes the following action: Investigate Signal (Action): One INFANTRY unit (excluding CHARACTER units) from your army can start to perform this action at the end of your Movement phase if it is wholly within 6\" of the centre of the battlefield and no enemy units (excluding AIRCRAFT units) are wholly within 6\" of the centre of the battlefield. This action is completed at the end of your turn provided the unit attempting it is still wholly within 6\" of the centre of the battlefield and no enemy units (excluding AIRCRAFT units) are wholly within 6\" of the centre of the battlefield.",
+                "category": "SHADOW OPERATIONS"
+            },
+            {
+                "title": "RETRIEVE OCTARIUS DATA",
+                "type": "End Game Objective",
+                "description": "If you select this objective, keep a tally of Retrieved Data points; add 1 to that tally each time a unit from your army successfully completes the following action during the battle: Retrieve Data (Action): One INFANTRY unit (excluding CHARACTER units) from your army can start to perform this action at the end of your Movement phase if it is wholly within a table quarter that has not had a servo-skull retrieved by your army (see below) and it is more then 6\" away from any other table quarter. This action is completed at the end of your turn provided the unit attempting it is still within the same table quarter. If this action is successfully completed, the table quarter is said to have had a servo-skull retrieved by your army. At the end of the battle, score 4 victory points if your Retrieved Data tally is 2, score 8 victory points if your tally is 3, or score 12 victory points if your tally is 4.",
+                "category": "SHADOW OPERATIONS"
+            },
+            {
+                "title": "DEPLOY TELEPORT HOMERS",
+                "type": "Progressive Objective",
+                "description": "If you select this objective, then units from your army can perform the following action: Deploy Teleport Homer (Action): One INFANTRY or BIKER unit from your army can start to perform this action at the end of your Movement phase if it is wholly within 12\" of your opponent’s deployment zone. The action is completed at the end of your next Command phase provided the unit attempting it is still wholly within 12\" of your opponent’s deployment zone. Each time a unit from your army successfully completes this action, you score 2 victory points (you score 4 victory points instead if the unit completed the action while wholly within your opponent’s deployment zone).",
+                "category": "SHADOW OPERATIONS"
+            },
+            {
+                "title": "ASSASSINATION",
+                "type": "End Game Objective",
+                "description": "Score 3 victory points at the end of the battle for each enemy CHARACTER model that is destroyed. If the enemy WARLORD was destroyed during the battle, gain 1 additional victory point.",
+                "category": "PURGE THE ENEMY"
+            },
+            {
+                "title": "TITAN HUNTER",
+                "type": "End Game Objective",
+                "description": "Score 4 victory points at the end of the battle if one enemy TITANIC model is destroyed, 9 victory points if two enemy TITANIC models are destroyed, or 15 victory points if three or more enemy TITANIC models are destroyed.",
+                "category": "PURGE THE ENEMY"
+            },
+            {
+                "title": "BRING IT DOWN",
+                "type": "End Game Objective",
+                "description": "Score 1 victory point at the end of the battle for each enemy MONSTER or VEHICLE model with a Wounds characteristic of 10 or less that is destroyed, 2 victory points for each enemy MONSTER or VEHICLE model with a Wounds characteristic of between 11-19 that is destroyed, and 3 victory points for each enemy MONSTER or VEHICLE model with a Wounds characteristic of 20 or more that is destroyed.",
+                "category": "PURGE THE ENEMY"
+            },
+            {
+                "title": "ABHOR THE WITCH",
+                "type": "End Game Objective",
+                "description": "You cannot select this secondary objective if your army includes any PSYKER units. Score 3 victory points at the end of the battle for each enemy PSYKER CHARACTER unit that is destroyed, and 2 victory points for every other enemy PSYKER unit that is destroyed.",
+                "category": "WARPCRAFT"
+            },
+            {
+                "title": "WARP RITUAL",
+                "type": "End Game Objective",
+                "description": "If you select this objective, keep a tally of Ritual points; add 1 to that tally each time a unit from your army successfully completes the following psychic action during the battle: Warp Ritual (Psychic Action - Warp Charge 3): One PSYKER CHARACTER unit from your army can attempt to perform this psychic action in your Psychic phase if it is within 6\" of the centre of the battlefield. At the end of the battle, score 3 victory points if your Ritual tally is 1, score 7 victory points if your tally is 2, or score 12 victory points if your tally is 3 or more.",
+                "category": "WARPCRAFT"
+            },
+            {
+                "title": "PIERCE THE VEIL",
+                "type": "End Game Objective",
+                "description": "Score 8 victory points at the end of the battle if one or more units from your army successfully completed the following psychic action 2 or more times during the battle, or 15 victory points at the end of the battle if one or more units from your army successfully completed the following psychic action 4 times during the battle (note that you can only score this objective once): Pierce the Veil (Psychic Action - Warp Charge 4): One PSYKER CHARACTER unit from your army can attempt to perform this psychic action during your Psychic phase if it is within 6\" of your opponent’s battlefield edge and more than 6\" from any enemy models.",
+                "category": "WARPCRAFT"
+            },
+            {
+                "title": "PSYCHIC INTERROGATION",
+                "type": "Progressive Objective",
+                "description": "Score 3 victory points each time you successfully complete the following psychic action: Psychic Interrogation (Psychic Action - Warp Charge 4): One PSYKER CHARACTER unit from your army can attempt to perform this psychic action in your Psychic phase if it is within 24\" of any visible enemy CHARACTER models.",
+                "category": "WARPCRAFT"
+            }
+        ]
+    }
 }

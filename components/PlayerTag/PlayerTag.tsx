@@ -14,6 +14,7 @@ interface Props {
 }
 
 const PlayerTag = ({ reverse, playerName, playerNameTwo, vp, codex, codexTwo, active }: Props) => {
+  const hasSecondPlayer: boolean = playerNameTwo !== undefined && playerNameTwo.length > 0;
   return (
     <View
       style={
@@ -29,7 +30,7 @@ const PlayerTag = ({ reverse, playerName, playerNameTwo, vp, codex, codexTwo, ac
       <View style={styles.naming}>
         <Surface style={reverse ? styles.nameReverse : styles.name}>
           <Text style={{ fontSize: 26, color: "#fff" }}>{playerName}</Text>
-          {playerNameTwo && <Text style={{ fontSize: 26, color: "#fff" }}>{playerNameTwo}</Text>}
+          {hasSecondPlayer && <Text style={{ fontSize: 26, color: "#fff" }}>{playerNameTwo}</Text>}
         </Surface>
         <Surface style={styles.codex}>
           {codexTwo ? (
@@ -127,6 +128,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 5,
     backgroundColor: "#808080",
+    elevation: 5,
   },
   icon: {
     borderRadius: 50000,

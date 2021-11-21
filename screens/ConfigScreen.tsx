@@ -1,14 +1,14 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Image, Dimensions, KeyboardAvoidingView, Platform } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { Button } from "react-native-paper";
+import { ActivityIndicator, Button } from "react-native-paper";
 import ConfigPaper, { DataListItem } from "../components/ConfigPaper/ConfigPaper";
 import MissionPaper from "../components/MissionPaper/MissionPaper";
-import configData from "../data/configs.json";
-import missionData from "../data/missions.json";
 import { Images } from "../constants/Images";
 import PlayerPaper from "../components/PlayerPaper/PlayerPaper";
 import SecondaryPaper from "../components/SecondaryPaper/SecondaryPaper";
+import { useGetBattlesize, useGetMissions, useGetPlayerModes } from "../hooks/useGetData";
+import { Editions } from "../types";
 
 interface Props {
   navigation: any;
@@ -39,15 +39,23 @@ export interface SecondaryData {
 const ConfigScreen = ({ navigation }: Props) => {
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
-  const editionList = [{ label: "9th: Eternal War", value: "9th: Eternal War" }];
-  const battleSizeList = getBattleSizeData(configData, "battleSize");
-  const modeList = getBattleSizeData(configData, "modes");
-
+  const editionList = [
+    { label: "9th: Eternal War", value: "9th: Eternal War" },
+    { label: "Grand Tournament 2021", value: "Grand Tournament 2021" },
+  ];
   const [configMode, setConfigMode] = useState("basic");
 
-  const [edition, setEdition] = useState();
-  const [battleSize, setBattleSize] = useState();
-  const [mode, setMode] = useState(0);
+  const [edition, setEdition] = useState<Editions>("9th: Eternal War");
+
+  const { data: missionData, isLoading: missionLoading } = useGetMissions(edition);
+  const { data: battleSizeData, isLoading: battleSizeLoading } = useGetBattlesize(edition);
+  const { data: playerModes, isLoading: playModesLoading } = useGetPlayerModes();
+
+  const [battleSize, setBattleSize] = useState<string>("combat");
+  const [mode, setMode] = useState<number>(1);
+
+  const battleSizeList = battleSizeData && getBattleSizeData(battleSizeData);
+  const modeList = playerModes && getBattleSizeData(playerModes);
 
   const [editionError, setEditionError] = useState(false);
   const [battleSizeError, setbattleSizeError] = useState(false);
@@ -60,13 +68,14 @@ const ConfigScreen = ({ navigation }: Props) => {
   const [teamOneData, setTeamOneData] = useState();
   const [teamTwoData, setTeamTwoData] = useState();
 
-  const missionList = battleSize && getMissionData(missionData, battleSize);
-  const secondaryObjectives: Array<SecondaryData> = missionData.secondaries;
-  const secondaryObjectivesArray = createSecondaryObjectiveArray(secondaryObjectives);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
-  function getBattleSizeData(data: any, type: string): Array<DataListItem> {
-    const dataObject: DataListItem = data[type];
-    const dataArray: Array<DataListItem> = Object.entries(dataObject).map((entry) => {
+  const missionList = missionData && battleSize && getMissionData(missionData, battleSize);
+  const secondaryObjectives: Array<SecondaryData> = missionData && missionData.secondaries;
+  const secondaryObjectivesArray = missionData && createSecondaryObjectiveArray(secondaryObjectives);
+
+  function getBattleSizeData(data: [key: string]): Array<DataListItem> {
+    const dataArray: Array<DataListItem> = Object.entries(data).map((entry) => {
       const [key, value] = entry;
       return { label: value, value: key };
     });
@@ -118,6 +127,10 @@ const ConfigScreen = ({ navigation }: Props) => {
   // }
 
   useEffect(() => {
+    battleSizeData !== null && !battleSizeLoading && setBattleSize(Object.keys(battleSizeData)[0]);
+  }, [edition, battleSizeData]);
+
+  useEffect(() => {
     if (edition) {
       setEditionError(false);
     }
@@ -136,6 +149,7 @@ const ConfigScreen = ({ navigation }: Props) => {
   // });
 
   const handleNavigation = () => {
+    setButtonLoading(true);
     if (!edition || !battleSize || !mode) {
       if (!edition) {
         setEditionError(true);
@@ -146,10 +160,13 @@ const ConfigScreen = ({ navigation }: Props) => {
       if (!mode) {
         setModeError(true);
       }
+      setButtonLoading(false);
     } else {
       if (configMode === "mission") {
         setConfigMode("players");
+        setButtonLoading(false);
       } else if (configMode === "players") {
+        setButtonLoading(false);
         navigation.navigate("Game", {
           edition: edition,
           battleSize: findInBattleSizeList(battleSizeList, battleSize),
@@ -160,26 +177,18 @@ const ConfigScreen = ({ navigation }: Props) => {
         });
       } else {
         setConfigMode("mission");
+        setButtonLoading(false);
       }
     }
   };
 
-  const getImage = (mission: Mission): any => {
-    switch (mission.title) {
-      case "Incisive Strike":
-        return Images.combat.incisive;
-      case "Outriders":
-        return Images.combat.outriders;
-      case "Encircle":
-        return Images.combat.encircle;
-      default:
-        return Images.combat.incisive;
-    }
+  const getImage = (mission: Mission, type: any): any => {
+    return Images.missions[type][mission.title];
   };
 
   const renderMissionList = (list: Array<Mission> | undefined): any => {
     return list?.map((mission: Mission, index: number) => {
-      const missionImage: any = getImage(mission);
+      const missionImage: any = getImage(mission, edition);
       return (
         <MissionPaper
           key={index}
@@ -196,13 +205,13 @@ const ConfigScreen = ({ navigation }: Props) => {
     if (configMode === "mission") {
       if (!selectedMission) {
         return (
-          <Button mode="contained" color="#9b9b9b">
+          <Button mode="contained" color="#9b9b9b" loading={buttonLoading}>
             Set Players
           </Button>
         );
       } else {
         return (
-          <Button mode="contained" color="#C7B300" onPress={() => handleNavigation()}>
+          <Button mode="contained" color="#C7B300" onPress={() => handleNavigation()} loading={buttonLoading}>
             Set Players
           </Button>
         );
@@ -210,70 +219,70 @@ const ConfigScreen = ({ navigation }: Props) => {
     } else if (configMode === "players") {
       if (!allSecondariesFilled) {
         return (
-          <Button mode="contained" color="#9b9b9b">
+          <Button mode="contained" color="#9b9b9b" loading={buttonLoading}>
             Start Game
           </Button>
         );
       } else {
         return (
-          <Button mode="contained" color={"#C7B300"} onPress={() => handleNavigation()}>
+          <Button mode="contained" color={"#C7B300"} onPress={() => handleNavigation()} loading={buttonLoading}>
             Start Game
           </Button>
         );
       }
     } else {
       return (
-        <Button mode="contained" color={"#C7B300"} onPress={() => handleNavigation()}>
+        <Button mode="contained" color={"#C7B300"} onPress={() => handleNavigation()} loading={buttonLoading}>
           Select Mission
         </Button>
       );
     }
   };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} resizeMode="contain" source={require("../assets/images/wh-brand.png")} />
+  const viewPort =
+    configMode === "basic" ? (
+      <View style={styles.configs}>
+        <ConfigPaper title="Edition" data={editionList} getValue={setEdition} hasError={editionError} initialValue={edition} />
+        <ConfigPaper
+          title="Battle Size"
+          data={battleSizeList}
+          getValue={setBattleSize}
+          hasError={battleSizeError}
+          initialValue={battleSize}
+        />
+        <ConfigPaper title="VS Mode" data={modeList} getValue={setMode} hasError={modeError} initialValue={mode.toString()} />
       </View>
-      {configMode === "basic" && (
-        <View style={styles.configs}>
-          <ConfigPaper
-            title="Edition"
-            data={editionList}
-            getValue={setEdition}
-            hasError={editionError}
-            zIndex={3000}
-            zIndexReverse={1000}
-          />
-          <ConfigPaper
-            title="Battle Size"
-            data={battleSizeList}
-            getValue={setBattleSize}
-            hasError={battleSizeError}
-            zIndex={2000}
-            zIndexReverse={2000}
-          />
-          <ConfigPaper title="VS Mode" data={modeList} getValue={setMode} hasError={modeError} zIndex={1000} zIndexReverse={3000} />
+    ) : configMode === "mission" ? (
+      <View style={{ flex: 1, alignItems: "center" }}>{renderMissionList(missionList)}</View>
+    ) : (
+      <View style={{ flex: 1, alignItems: "center" }}>
+        <PlayerPaper playerCount={mode} getTeamOneData={setTeamOneData} getTeamTwoData={setTeamTwoData} />
+        <SecondaryPaper
+          list={secondaryObjectivesArray}
+          getSecondaries={setSecondaries}
+          allSecondariesFilled={setAllSecondariesFilled}
+          validationData={secondaryObjectives}
+          edition={edition}
+        />
+      </View>
+    );
+
+  return (
+    <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      {missionLoading || battleSizeLoading || playModesLoading || buttonLoading ? (
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+          <ActivityIndicator animating={true} size="large" />
         </View>
-      )}
-      {configMode === "mission" && (
-        <ScrollView contentContainerStyle={{ alignItems: "center" }} style={{ flex: 1 }}>
-          {renderMissionList(missionList)}
-        </ScrollView>
-      )}
-      {configMode === "players" && (
-        <ScrollView contentContainerStyle={{ alignItems: "center" }} style={{ flex: 1 }}>
-          <PlayerPaper playerCount={mode} getTeamOneData={setTeamOneData} getTeamTwoData={setTeamTwoData} />
-          <SecondaryPaper
-            list={secondaryObjectivesArray}
-            getSecondaries={setSecondaries}
-            allSecondariesFilled={setAllSecondariesFilled}
-            validationData={secondaryObjectives}
-          />
+      ) : (
+        <ScrollView>
+          <View style={styles.imageContainer}>
+            <Image style={styles.image} resizeMode="contain" source={require("../assets/images/wh-brand.png")} />
+          </View>
+          {viewPort}
         </ScrollView>
       )}
       <View style={styles.footerButton}>{renderButton()}</View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -293,10 +302,11 @@ const styles = StyleSheet.create({
   },
   footerButton: {
     justifyContent: "flex-end",
-    maxWidth: 600,
+    maxWidth: 300,
     alignSelf: "center",
     width: "100%",
     marginTop: 16,
+    marginBottom: 16,
   },
   imageContainer: {
     width: "100%",

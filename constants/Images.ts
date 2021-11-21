@@ -1,13 +1,30 @@
-interface ImageImport {
-  combat: { incisive: any; outriders: any; encircle: any };
-  icons: any;
-}
-
-export const Images: ImageImport = {
-  combat: {
-    incisive: require("../assets/images/incisive.png"),
-    outriders: require("../assets/images/outriders.png"),
-    encircle: require("../assets/images/encircle.png"),
+export const Images: any = {
+  missions: {
+    "9th: Eternal War": {
+      "Incisive Strike": require("../assets/images/9thEternalWar/incisive.png"),
+      Outriders: require("../assets/images/9thEternalWar/outriders.png"),
+      Encircle: require("../assets/images/9thEternalWar/encircle.png"),
+    },
+    "Grand Tournament 2021": {
+      Crossfire: require("../assets/images/GrandTournament2021/Crossfire2020.png"),
+      Resupply: require("../assets/images/GrandTournament2021/Resupply2020.png"),
+      Raid: require("../assets/images/GrandTournament2021/Raid2020.png"),
+      "Centre Ground": require("../assets/images/GrandTournament2021/CentreGround2020.png"),
+      Ascension: require("../assets/images/GrandTournament2021/Ascension2020.png"),
+      "Forward Push": require("../assets/images/GrandTournament2021/ForwardPush2020.png"),
+      "Rise of the Machine Spirit": require("../assets/images/GrandTournament2021/RiseOfTheMachineSpirit2020.png"),
+      "Show of Force": require("../assets/images/GrandTournament2021/ShowOfForce2020.png"),
+      "Reconaissance Mission": require("../assets/images/GrandTournament2021/ReconnaissanceMission2020.png"),
+      "Retrieval Mission": require("../assets/images/GrandTournament2021/RetrievalMission2020.png"),
+      "Scorched Earth": require("../assets/images/GrandTournament2021/ScorchedEarth2020.png"),
+      "Vital Intelligence": require("../assets/images/GrandTournament2021/VitalIntelligence2020.png"),
+      "Surround and Destroy": require("../assets/images/GrandTournament2021/SurroundAndDestroy2020.png"),
+      "Battle Lines": require("../assets/images/GrandTournament2021/BattleLines2020.png"),
+      "The Scouring": require("../assets/images/GrandTournament2021/TheScouring2020.png"),
+      Overrun: require("../assets/images/GrandTournament2021/Overrun2020.png"),
+      "Sweep and Clear": require("../assets/images/GrandTournament2021/SweepAndClear2020.png"),
+      "Priority Target": require("../assets/images/GrandTournament2021/PriorityTarget2020.png"),
+    },
   },
   icons: {
     "Adeptus Custodes": require("../assets/images/icons/Adeptus_Custodes.png"),

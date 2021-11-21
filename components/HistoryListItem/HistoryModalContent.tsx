@@ -14,6 +14,7 @@ import {
   Title,
   useTheme,
 } from "react-native-paper";
+import Colors from "../../constants/Colors";
 import { Images } from "../../constants/Images";
 import { createHistoryJSON, GameHistory, setHistory } from "../../hooks/useFileSystem";
 import ImagePickerPaper from "../ImagePicker/ImagePickerPaper";
@@ -198,7 +199,6 @@ const HistoryModalContent = ({ history, navigation, isEndScreen, closeModal }: P
     setHistory(historyString);
     navigation.popToTop();
   };
-  console.log("JHJ", history);
 
   return (
     <View style={styles.container}>
@@ -223,12 +223,23 @@ const HistoryModalContent = ({ history, navigation, isEndScreen, closeModal }: P
               </View>
               <View style={styles.resultContainer}>
                 <View style={styles.resultContainerInner}>
-                  <View style={{ alignItems: "flex-end" }}>
+                  <View style={{ alignItems: "flex-end", flexDirection: "row-reverse" }}>
                     <Surface style={styles.icon}>
                       <View style={styles.iconContainer}>
                         <Image resizeMode="contain" style={{ width: "90%", height: "90%" }} source={Images.icons[history.teamOneCodex]} />
                       </View>
                     </Surface>
+                    {history.teamOneCodexTwo && (
+                      <Surface style={[styles.icon, { marginRight: 8 }]}>
+                        <View style={styles.iconContainer}>
+                          <Image
+                            resizeMode="contain"
+                            style={{ width: "90%", height: "90%" }}
+                            source={Images.icons[history.teamOneCodexTwo]}
+                          />
+                        </View>
+                      </Surface>
+                    )}
                   </View>
                   <View
                     style={{
@@ -242,12 +253,23 @@ const HistoryModalContent = ({ history, navigation, isEndScreen, closeModal }: P
                     <Headline style={{ fontSize: 56, lineHeight: 56 }}>:</Headline>
                     <Headline style={{ fontSize: 56, lineHeight: 64 }}>{history.teamTwoPoints}</Headline>
                   </View>
-                  <View style={{}}>
+                  <View style={{ flexDirection: "row" }}>
                     <Surface style={styles.icon}>
                       <View style={styles.iconContainer}>
                         <Image resizeMode="contain" style={{ width: "90%", height: "90%" }} source={Images.icons[history.teamTwoCodex]} />
                       </View>
                     </Surface>
+                    {history.teamTwoCodexTwo && (
+                      <Surface style={[styles.icon, { marginLeft: 8 }]}>
+                        <View style={styles.iconContainer}>
+                          <Image
+                            resizeMode="contain"
+                            style={{ width: "90%", height: "90%" }}
+                            source={Images.icons[history.teamTwoCodexTwo]}
+                          />
+                        </View>
+                      </Surface>
+                    )}
                   </View>
                 </View>
                 <Headline style={{ color: "#fff" }}>Mission: {history.mission}</Headline>
@@ -279,7 +301,7 @@ const HistoryModalContent = ({ history, navigation, isEndScreen, closeModal }: P
                     <Surface style={styles.surface}>
                       <View>
                         <Caption>Comments:</Caption>
-                        <Paragraph>{comment}</Paragraph>
+                        <Paragraph>{comment ? comment : "There is no comment."}</Paragraph>
                       </View>
                     </Surface>
                   )}
@@ -349,7 +371,7 @@ const styles = StyleSheet.create({
   },
   surface: {
     width: "100%",
-    backgroundColor: "#E5E5E5",
+    backgroundColor: Colors.dark.grey,
     padding: 12,
   },
   icon: {

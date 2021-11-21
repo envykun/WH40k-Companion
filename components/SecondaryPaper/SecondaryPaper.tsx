@@ -1,18 +1,23 @@
+import { Ionicons } from "@expo/vector-icons";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { HelperText, Surface, TextInput } from "react-native-paper";
+import { HelperText, IconButton, Surface, TextInput } from "react-native-paper";
 import { SecondaryData } from "../../screens/ConfigScreen";
+import { Editions } from "../../types";
 import { DataListItem } from "../ConfigPaper/ConfigPaper";
+import CustomModal from "../CustomModal/CustomModal";
 import Dropdown from "../Dropdown/Dropdown";
+import InfoModal from "../InfoModal/InfoModal";
 
 interface Props {
   list: Array<DataListItem>;
   getSecondaries: any;
   allSecondariesFilled: any;
   validationData: Array<SecondaryData>;
+  edition: Editions;
 }
 
-const SecondaryPaper = ({ list, getSecondaries, allSecondariesFilled, validationData }: Props) => {
+const SecondaryPaper = ({ list, getSecondaries, allSecondariesFilled, validationData, edition }: Props) => {
   const [teamOneSecondaries, setTeamOneSecondaries] = useState<string>("");
   const [teamOneObjOne, setTeamOneObjOne] = useState<string>("");
   const [teamOneObjTwo, setTeamOneObjTwo] = useState<string>("");
@@ -35,11 +40,15 @@ const SecondaryPaper = ({ list, getSecondaries, allSecondariesFilled, validation
   const [showErrorTeamTwo, setShowErrorTeamTwo] = useState(false);
   const [errorTeamTwo, setErrorTeamTwo] = useState<Array<string | undefined>>([]);
 
-  const secondaryList = list.concat([
-    { label: "Custom Objective 1", value: "Custom1" },
-    { label: "Custom Objective 2", value: "Custom2" },
-    { label: "Custom Objective 3", value: "Custom3" },
-  ]);
+  const [showInfoModal, setShowInfoModal] = useState(false);
+
+  const secondaryList = list
+    .sort((a, b) => a.label.localeCompare(b.label))
+    .concat([
+      { label: "Custom Objective 1", value: "Custom1" },
+      { label: "Custom Objective 2", value: "Custom2" },
+      { label: "Custom Objective 3", value: "Custom3" },
+    ]);
 
   // Validation Team 1 secondaries
   useEffect(() => {
@@ -138,17 +147,22 @@ const SecondaryPaper = ({ list, getSecondaries, allSecondariesFilled, validation
 
   return (
     <Surface style={styles.surface}>
-      <Text style={styles.title}>Secondaries</Text>
+      <View style={{ flexDirection: "row" }}>
+        <Text style={styles.title}>Secondaries</Text>
+        <IconButton
+          icon={() => <Ionicons name="ios-information-circle" size={32} color="white" />}
+          onPress={() => setShowInfoModal(true)}
+          style={{ margin: 0, marginTop: -5 }}
+        />
+      </View>
+      <CustomModal
+        visible={showInfoModal}
+        hideModal={() => setShowInfoModal(false)}
+        children={<InfoModal secondaries={validationData} closeInfo={() => setShowInfoModal(false)} edition={edition} />}
+      />
       <View style={styles.container}>
         <Text style={styles.team}>Team 1</Text>
-        <Dropdown
-          label="Secondaries"
-          list={secondaryList}
-          getValue={setTeamOneSecondaries}
-          zIndex={3000}
-          zIndexReverse={1000}
-          multiSelect
-        />
+        <Dropdown label="Secondaries" list={secondaryList} getValue={setTeamOneSecondaries} multiSelect />
         {showErrorTeamOne && (
           <HelperText type="error" visible={showErrorTeamOne}>
             * To many selections of {errorTeamOne.join(", ")}.
@@ -188,14 +202,7 @@ const SecondaryPaper = ({ list, getSecondaries, allSecondariesFilled, validation
 
       <View style={styles.container}>
         <Text style={styles.team}>Team 2</Text>
-        <Dropdown
-          label="Secondaries"
-          list={secondaryList}
-          getValue={setTeamTwoSecondaries}
-          zIndex={1000}
-          zIndexReverse={3000}
-          multiSelect
-        />
+        <Dropdown label="Secondaries" list={secondaryList} getValue={setTeamTwoSecondaries} multiSelect />
         {showErrorTeamTwo && (
           <HelperText type="error" visible={showErrorTeamTwo}>
             * To many selections of {errorTeamTwo.join(", ")}.

@@ -6,6 +6,7 @@ import { Images } from "../../constants/Images";
 import CustomModal from "../CustomModal/CustomModal";
 import HistoryModalContent from "./HistoryModalContent";
 import { GameHistory } from "../../hooks/useFileSystem";
+import Colors from "../../constants/Colors";
 
 interface Props {
   teamOneCodex: string;
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 12,
     paddingLeft: 12,
+    backgroundColor: Colors.dark.grey,
   },
   result: {
     flexDirection: "row",
