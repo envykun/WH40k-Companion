@@ -88,9 +88,11 @@ const StatsPaper = ({ history, isTeamTwo, navigation }: Props) => {
         </DataTable.Row>
         <DataTable.Row>
           <DataTable.Cell style={{ flex: 3 }}>
-            <View>
+            <View style={{ flex: 1 }}>
               <Caption>Secondary 1</Caption>
-              <Text>{!isTeamTwo ? history?.teamOneSecondary.secondaryOne.title : history?.teamTwoSecondary.secondaryOne.title}</Text>
+              <Text numberOfLines={1}>
+                {!isTeamTwo ? history?.teamOneSecondary.secondaryOne.title : history?.teamTwoSecondary.secondaryOne.title}
+              </Text>
             </View>
           </DataTable.Cell>
           <DataTable.Cell numeric>
@@ -117,9 +119,11 @@ const StatsPaper = ({ history, isTeamTwo, navigation }: Props) => {
 
         <DataTable.Row>
           <DataTable.Cell style={{ flex: 3 }}>
-            <View>
+            <View style={{ flex: 1 }}>
               <Caption>Secondary 2</Caption>
-              <Text>{!isTeamTwo ? history?.teamOneSecondary.secondaryTwo.title : history?.teamTwoSecondary.secondaryTwo.title}</Text>
+              <Text numberOfLines={1}>
+                {!isTeamTwo ? history?.teamOneSecondary.secondaryTwo.title : history?.teamTwoSecondary.secondaryTwo.title}
+              </Text>
             </View>
           </DataTable.Cell>
           <DataTable.Cell numeric>
@@ -146,9 +150,11 @@ const StatsPaper = ({ history, isTeamTwo, navigation }: Props) => {
 
         <DataTable.Row>
           <DataTable.Cell style={{ flex: 3 }}>
-            <View>
+            <View style={{ flex: 1 }}>
               <Caption>Secondary 3</Caption>
-              <Text>{!isTeamTwo ? history?.teamOneSecondary.secondaryThree.title : history?.teamTwoSecondary.secondaryThree.title}</Text>
+              <Text numberOfLines={1}>
+                {!isTeamTwo ? history?.teamOneSecondary.secondaryThree.title : history?.teamTwoSecondary.secondaryThree.title}
+              </Text>
             </View>
           </DataTable.Cell>
           <DataTable.Cell numeric>

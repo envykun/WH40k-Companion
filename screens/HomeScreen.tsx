@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import { ActivityIndicator, Button, Dialog, Headline, Paragraph, Surface, Title } from "react-native-paper";
 import HistoryListItem from "../components/HistoryListItem/HistoryListItem";
 import Colors from "../constants/Colors";
@@ -30,7 +30,23 @@ const HomeScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Text style={{ fontSize: 42, fontFamily: "roboto-regular", color: Colors.dark.yellow }}>Warhammer 40k Companion</Text>
+        <View style={{ borderRadius: 100 }}>
+          <Image
+            style={{ width: 100, height: 100, borderRadius: 100, margin: -12 }}
+            resizeMode="stretch"
+            source={require("../assets/images/adaptive-icon.png")}
+          />
+        </View>
+        <Text
+          style={{
+            fontSize: 42,
+            fontFamily: "roboto-regular",
+            color: Colors.dark.yellow,
+            textAlignVertical: "center",
+          }}
+        >
+          Warhammer 40k Companion
+        </Text>
       </View>
       <View style={styles.bodyContent}>
         {initialLoading ? (
@@ -132,6 +148,9 @@ const styles = StyleSheet.create({
   title: {
     padding: 20,
     paddingTop: 40,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonContainer: {
     padding: 20,

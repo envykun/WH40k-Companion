@@ -316,181 +316,181 @@ const GameScreen = ({ route, navigation }: Props) => {
     return false;
   }
   return (
-    // <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : undefined}>
-    // <ScrollView contentContainerStyle={styles.containerScrollview}>
-    <View style={styles.container}>
-      <CustomModal
-        visible={showEndGameModal}
-        hideModal={setShowEndGameModal}
-        children={<HistoryModalContent history={gameHistory} isEndScreen navigation={navigation} />}
-      />
-      <View style={styles.overview}>
-        <View style={styles.overviewInner}>
-          <View style={styles.playerTag}>
-            <PlayerTag
-              playerName={playerOneName}
-              playerNameTwo={playerOneNameTwo}
-              codex={playerOneCodex}
-              codexTwo={playerOneCodexTwo}
-              vp={teamOneVP}
-              active={isTurn("Team 1")}
-            />
-          </View>
-          <View style={styles.battleRoundContainer}>
-            <View style={styles.timer}>
-              <Text style={{ fontSize: 24, color: "#fff" }}>{new Date(timer * 1000).toISOString().substr(11, 8)}</Text>
-            </View>
-            <Surface style={styles.battleRound}>
-              <Text
-                style={{
-                  fontSize: 72,
-                  lineHeight: 74,
-                  textAlign: "center",
-                  marginBottom: -10,
-                }}
-              >
-                {battleRound}
-              </Text>
-              <Text>Battle</Text>
-              <Text>Round</Text>
-            </Surface>
-            <View style={styles.currentCodex}>
-              <Surface
-                style={{
-                  backgroundColor: "#C4C4C4",
-                  paddingVertical: 4,
-                  paddingHorizontal: 16,
-                  borderRadius: 4,
-                }}
-              >
-                <Text style={{ alignSelf: "center" }}>{currentTurn === "Team 1" ? playerOneCodex : playerTwoCodex}</Text>
-              </Surface>
-            </View>
-          </View>
-          <View style={styles.playerTag}>
-            <PlayerTag
-              playerName={playerTwoName}
-              playerNameTwo={playerTwoNameTwo}
-              codex={playerTwoCodex}
-              codexTwo={playerTwoCodexTwo}
-              vp={teamTwoVP}
-              reverse
-              active={isTurn("Team 2")}
-            />
-          </View>
-        </View>
-        <View style={styles.overviewInner}>
-          <View style={styles.cp}>
-            {playerOneCPTwo ? (
-              <View style={{ flexDirection: "row", marginLeft: 20 }}>
-                <View style={{ padding: 8 }}>
-                  <CPCounter initialValue={playerOneCP} title={playerOneName} small />
-                  <CPCounter initialValue={playerOneCPTwo} title={playerOneNameTwo} small />
-                </View>
-                <View style={{ flex: 1, justifyContent: "center", alignItems: "flex-start", paddingLeft: 26 }}>
-                  <CPCounter initialValue={0} />
-                </View>
-              </View>
-            ) : (
-              <CPCounter initialValue={playerOneCP} addOne={currentTurn === "Team 1"} />
-            )}
-          </View>
-
-          <View style={styles.cp}>
-            {playerTwoCPTwo ? (
-              <View style={{ flexDirection: "row-reverse", marginLeft: 20 }}>
-                <View style={{ padding: 8 }}>
-                  <CPCounter initialValue={playerTwoCP} title={playerTwoName} small />
-                  <CPCounter initialValue={playerTwoCPTwo} title={playerTwoNameTwo} small />
-                </View>
-                <View style={{ flex: 1, justifyContent: "center", alignItems: "flex-end", paddingRight: 26 }}>
-                  <CPCounter initialValue={0} />
-                </View>
-              </View>
-            ) : (
-              <CPCounter initialValue={playerTwoCP} addOne={currentTurn === "Team 2"} />
-            )}
-          </View>
-        </View>
-      </View>
-      <View style={styles.tabs}>
-        <GameTabs
-          primaryCount={primaryPoints}
-          primaryTitle={primary.title}
-          primaryDescription={primary.briefing}
-          getPrimaryPoints={setPrimaryPoints}
-          edition={edition}
-          battleSize={battleSize}
-          secondary={secondary}
-          getSecondaryPoints={setSecondaryPoints}
-          handleNextTurn={battleRound}
-          getPointDetails={setPointDetails}
-          gameEnded={gameEnded}
-          mission={primary}
+    <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : undefined}>
+      <ScrollView contentContainerStyle={styles.containerScrollview}>
+        {/* <View style={styles.container}> */}
+        <CustomModal
+          visible={showEndGameModal}
+          hideModal={setShowEndGameModal}
+          children={<HistoryModalContent history={gameHistory} isEndScreen navigation={navigation} />}
         />
-      </View>
-      <View style={styles.button}>
-        {!gameStarted && (
-          <Button mode="text" style={{ position: "absolute", left: 20 }} color="#C7B300" onPress={() => navigation.goBack()}>
-            Back
-          </Button>
-        )}
-        <View style={{ width: 300 }}>
-          <Button mode="contained" color="#C7B300" onPress={() => handleNextTurn()}>
-            {buttonText}
+        <View style={styles.overview}>
+          <View style={styles.overviewInner}>
+            <View style={styles.playerTag}>
+              <PlayerTag
+                playerName={playerOneName}
+                playerNameTwo={playerOneNameTwo}
+                codex={playerOneCodex}
+                codexTwo={playerOneCodexTwo}
+                vp={teamOneVP}
+                active={isTurn("Team 1")}
+              />
+            </View>
+            <View style={styles.battleRoundContainer}>
+              <View style={styles.timer}>
+                <Text style={{ fontSize: 24, color: "#fff" }}>{new Date(timer * 1000).toISOString().substr(11, 8)}</Text>
+              </View>
+              <Surface style={styles.battleRound}>
+                <Text
+                  style={{
+                    fontSize: 72,
+                    lineHeight: 74,
+                    textAlign: "center",
+                    marginBottom: -10,
+                  }}
+                >
+                  {battleRound}
+                </Text>
+                <Text>Battle</Text>
+                <Text>Round</Text>
+              </Surface>
+              <View style={styles.currentCodex}>
+                <Surface
+                  style={{
+                    backgroundColor: "#C4C4C4",
+                    paddingVertical: 4,
+                    paddingHorizontal: 16,
+                    borderRadius: 4,
+                  }}
+                >
+                  <Text style={{ alignSelf: "center" }}>{currentTurn === "Team 1" ? playerOneCodex : playerTwoCodex}</Text>
+                </Surface>
+              </View>
+            </View>
+            <View style={styles.playerTag}>
+              <PlayerTag
+                playerName={playerTwoName}
+                playerNameTwo={playerTwoNameTwo}
+                codex={playerTwoCodex}
+                codexTwo={playerTwoCodexTwo}
+                vp={teamTwoVP}
+                reverse
+                active={isTurn("Team 2")}
+              />
+            </View>
+          </View>
+          <View style={styles.overviewInner}>
+            <View style={styles.cp}>
+              {playerOneCPTwo ? (
+                <View style={{ flexDirection: "row", marginLeft: 20 }}>
+                  <View style={{ padding: 8 }}>
+                    <CPCounter initialValue={playerOneCP} title={playerOneName} small />
+                    <CPCounter initialValue={playerOneCPTwo} title={playerOneNameTwo} small />
+                  </View>
+                  <View style={{ flex: 1, justifyContent: "center", alignItems: "flex-start", paddingLeft: 26 }}>
+                    <CPCounter initialValue={playerOneCP} addOne={gameStarted && currentTurn === "Team 1"} />
+                  </View>
+                </View>
+              ) : (
+                <CPCounter initialValue={playerOneCP} addOne={gameStarted && currentTurn === "Team 1"} />
+              )}
+            </View>
+
+            <View style={styles.cp}>
+              {playerTwoCPTwo ? (
+                <View style={{ flexDirection: "row-reverse", marginLeft: 20 }}>
+                  <View style={{ padding: 8 }}>
+                    <CPCounter initialValue={playerTwoCP} title={playerTwoName} small />
+                    <CPCounter initialValue={playerTwoCPTwo} title={playerTwoNameTwo} small />
+                  </View>
+                  <View style={{ flex: 1, justifyContent: "center", alignItems: "flex-end", paddingRight: 26 }}>
+                    <CPCounter initialValue={playerTwoCP} addOne={gameStarted && currentTurn === "Team 2"} />
+                  </View>
+                </View>
+              ) : (
+                <CPCounter initialValue={playerTwoCP} addOne={gameStarted && currentTurn === "Team 2"} />
+              )}
+            </View>
+          </View>
+        </View>
+        <View style={styles.tabs}>
+          <GameTabs
+            primaryCount={primaryPoints}
+            primaryTitle={primary.title}
+            primaryDescription={primary.briefing}
+            getPrimaryPoints={setPrimaryPoints}
+            edition={edition}
+            battleSize={battleSize}
+            secondary={secondary}
+            getSecondaryPoints={setSecondaryPoints}
+            handleNextTurn={battleRound}
+            getPointDetails={setPointDetails}
+            gameEnded={gameEnded}
+            mission={primary}
+          />
+        </View>
+        <View style={styles.button}>
+          {!gameStarted && (
+            <Button mode="text" style={{ position: "absolute", left: 20 }} color="#C7B300" onPress={() => navigation.goBack()}>
+              Back
+            </Button>
+          )}
+          <View style={{ width: 300 }}>
+            <Button mode="contained" color="#C7B300" onPress={() => handleNextTurn()}>
+              {buttonText}
+            </Button>
+          </View>
+          <Button mode="text" style={{ position: "absolute", right: 20 }} color="#C7B300" onPress={() => setShowCancelGame(true)}>
+            End game
           </Button>
         </View>
-        <Button mode="text" style={{ position: "absolute", right: 20 }} color="#C7B300" onPress={() => setShowCancelGame(true)}>
-          End game
-        </Button>
-      </View>
-      <Dialog visible={showStartingTeamDialog} dismissable={false} style={{ width: 400, alignSelf: "center" }}>
-        <Dialog.Title>Choose the starting team.</Dialog.Title>
-        <Dialog.Content>
-          <RadioButton.Group onValueChange={(newValue) => setStartingTeam(parseInt(newValue))} value={startingTeam.toString()}>
-            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-              <Subheading>{playerOneNameTwo ? `${playerOneName} & ${playerOneNameTwo}` : playerOneName}</Subheading>
-              <RadioButton.Android value="1" color={Colors.dark.yellow} />
-            </View>
-            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-              <Subheading>{playerTwoNameTwo ? `${playerTwoNameTwo} & ${playerTwoName}` : playerTwoName}</Subheading>
-              <RadioButton.Android value="2" color={Colors.dark.yellow} />
-            </View>
-          </RadioButton.Group>
-        </Dialog.Content>
-        <Dialog.Actions>
-          <Button onPress={() => handleNextTurn()}>confirm</Button>
-        </Dialog.Actions>
-      </Dialog>
-      <Dialog
-        visible={showCancelGame}
-        dismissable={true}
-        onDismiss={() => setShowCancelGame(false)}
-        style={{ width: 400, alignSelf: "center" }}
-      >
-        <Dialog.Title>Exit game?</Dialog.Title>
-        <Dialog.Content>
-          <Paragraph>You will return to the main menu. No History will be saved.</Paragraph>
-          <Paragraph>Do you want to continue?</Paragraph>
-        </Dialog.Content>
-        <Dialog.Actions>
-          <Button mode="text" onPress={() => setShowCancelGame(false)}>
-            Cancel
-          </Button>
-          <Button
-            mode="contained"
-            onPress={() => {
-              setShowCancelGame(false);
-              navigation.popToTop();
-            }}
-          >
-            confirm
-          </Button>
-        </Dialog.Actions>
-      </Dialog>
-    </View>
-    // </ScrollView>
-    // </KeyboardAvoidingView>
+        <Dialog visible={showStartingTeamDialog} dismissable={false} style={{ width: 400, alignSelf: "center" }}>
+          <Dialog.Title>Choose the starting team.</Dialog.Title>
+          <Dialog.Content>
+            <RadioButton.Group onValueChange={(newValue) => setStartingTeam(parseInt(newValue))} value={startingTeam.toString()}>
+              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                <Subheading>{playerOneNameTwo ? `${playerOneName} & ${playerOneNameTwo}` : playerOneName}</Subheading>
+                <RadioButton.Android value="1" color={Colors.dark.yellow} />
+              </View>
+              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                <Subheading>{playerTwoNameTwo ? `${playerTwoNameTwo} & ${playerTwoName}` : playerTwoName}</Subheading>
+                <RadioButton.Android value="2" color={Colors.dark.yellow} />
+              </View>
+            </RadioButton.Group>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={() => handleNextTurn()}>confirm</Button>
+          </Dialog.Actions>
+        </Dialog>
+        <Dialog
+          visible={showCancelGame}
+          dismissable={true}
+          onDismiss={() => setShowCancelGame(false)}
+          style={{ width: 400, alignSelf: "center" }}
+        >
+          <Dialog.Title>Exit game?</Dialog.Title>
+          <Dialog.Content>
+            <Paragraph>You will return to the main menu. No History will be saved.</Paragraph>
+            <Paragraph>Do you want to continue?</Paragraph>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button mode="text" onPress={() => setShowCancelGame(false)}>
+              Cancel
+            </Button>
+            <Button
+              mode="contained"
+              onPress={() => {
+                setShowCancelGame(false);
+                navigation.popToTop();
+              }}
+            >
+              confirm
+            </Button>
+          </Dialog.Actions>
+        </Dialog>
+        {/* </View> */}
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -538,7 +538,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
-    elevation: 3,
+    // elevation: 3,
   },
   timer: {
     position: "absolute",

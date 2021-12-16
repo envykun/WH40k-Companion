@@ -47,7 +47,6 @@ const TabContainerPaper = ({
       teamTwo: { s1: valueFour, s2: valueFive, s3: valueSix },
     };
     hasInput && getSecondaryPoints(points);
-    console.log("USEEFFECT");
   }, [valueOne, valueTwo, valueThree, valueFour, valueFive, valueSix]);
 
   return (

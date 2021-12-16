@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 5,
     backgroundColor: "#808080",
-    elevation: 5,
+    // elevation: 3,
   },
   icon: {
     borderRadius: 50000,
@@ -140,5 +140,6 @@ const styles = StyleSheet.create({
     top: 5,
     left: 15,
     backgroundColor: "#E5E5E5",
+    // elevation: 4,
   },
 });
