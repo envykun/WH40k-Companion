@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     padding: 8,
     flex: 1,
     flexDirection: "row",
+    flexWrap: "wrap",
   },
   teamOne: {
     flex: 1,

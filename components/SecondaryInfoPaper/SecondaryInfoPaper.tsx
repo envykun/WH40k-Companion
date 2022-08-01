@@ -45,10 +45,8 @@ const styles = StyleSheet.create({
   surface: {
     backgroundColor: "#1E1E1E",
     padding: 12,
-    marginTop: 8,
-    marginBottom: 20,
-    marginHorizontal: 8,
     position: "relative",
-    maxWidth: 600,
+    alignItems: "center",
+    width: "100%",
   },
 });

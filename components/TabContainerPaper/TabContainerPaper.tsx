@@ -92,11 +92,9 @@ const styles = StyleSheet.create({
   tabContainer: {
     flex: 1,
   },
-  primary: {
-    flex: 2,
-  },
+  primary: {},
   secondary: {
-    flex: 3,
+    flex: 1,
     marginTop: 16,
   },
 });

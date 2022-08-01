@@ -45,7 +45,7 @@ const PlayerPaperItem = ({ team, list, getPlayerData }: Props) => {
             placeholder="CP"
             value={cp}
             onChangeText={setCp}
-            right={<TextInput.Affix textStyle={{ fontSize: 20 }} text="CP" />}
+            right={<TextInput.Affix textStyle={{ fontSize: 16 }} text="CP" />}
           />
         </View>
       </View>

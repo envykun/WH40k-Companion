@@ -504,10 +504,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#101010",
   },
   containerScrollview: {
-    // flexGrow: 1,
     minHeight: "100%",
   },
-  overview: { flex: 1 },
+  overview: { flex: 1, height: 200, backgroundColor: "red" },
   overviewInner: {
     flex: 1,
     flexDirection: "row",

@@ -27,10 +27,12 @@ const Secondary = ({ title, count, hasInput, getValue, secondaries, edition }: P
           hideModal={() => setShowInfoModal(false)}
           children={<InfoModal secondaries={secondaries} closeInfo={() => setShowInfoModal(false)} scrollTo={title} edition={edition} />}
         />
-        <View>
-          <Text style={styles.title}>{title}</Text>
-        </View>
-        <View>
+        <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.title} numberOfLines={1}>
+              {title}
+            </Text>
+          </View>
           <IconButton
             icon={() => <Ionicons name="ios-information-circle" size={32} color="black" />}
             onPress={() => setShowInfoModal(true)}
@@ -77,6 +79,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flex: 1,
     marginVertical: 8,
+    alignItems: "center",
   },
   surface: {
     flex: 1,

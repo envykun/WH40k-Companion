@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Caption, Surface, Title } from "react-native-paper";
 import Colors from "../../constants/Colors";
+import Layout from "../../constants/Layout";
 import { SecondaryData } from "../../screens/ConfigScreen";
 
 interface Props {
@@ -14,9 +15,9 @@ const SecondaryInfoPaperItem = ({ secondary, highlight }: Props) => {
     <Surface style={highlight === secondary.title ? styles.surfaceHighlight : styles.surface}>
       <View style={styles.header}>
         <Title>{secondary.title}</Title>
-        <Text>{secondary.category}</Text>
+        <Text numberOfLines={1}>{secondary.category}</Text>
       </View>
-      <Caption style={{ marginTop: -10 }}>({secondary.type})</Caption>
+      <Caption>({secondary.type})</Caption>
       <Text style={{ color: "#202020", fontFamily: "roboto-light-italic" }}>{secondary.description}</Text>
     </Surface>
   );
@@ -31,6 +32,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingBottom: 8,
     backgroundColor: Colors.dark.grey,
+    maxWidth: 620,
+    width: Layout.window.width - 24,
   },
   surfaceHighlight: {
     minHeight: 64,
@@ -40,10 +43,15 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.dark.grey,
     borderColor: Colors.dark.yellow,
     borderWidth: 3,
+    maxWidth: 620,
+    width: Layout.window.width - 24,
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    flexWrap: "wrap",
+    flex: 1,
+    marginBottom: -6,
   },
 });

@@ -52,9 +52,9 @@ const PrimaryPaper = ({
         </Text>
       </View>
       <View style={styles.body}>
-        <View style={styles.descriptionContainer}>
+        {/* <View style={styles.descriptionContainer}>
           <Text style={styles.description}>{primaryDescription}</Text>
-        </View>
+        </View> */}
         {hasInput ? (
           <View style={styles.points}>
             <View style={{ flexDirection: "row" }}>
@@ -115,7 +115,6 @@ export default PrimaryPaper;
 
 const styles = StyleSheet.create({
   surface: {
-    height: "100%",
     backgroundColor: "#1E1E1E",
     paddingVertical: 8,
     paddingHorizontal: 12,
@@ -148,7 +147,6 @@ const styles = StyleSheet.create({
   },
   body: {
     padding: 8,
-    flex: 1,
   },
   pointText: {
     color: "#fff",

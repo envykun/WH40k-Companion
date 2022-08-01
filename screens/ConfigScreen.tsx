@@ -37,8 +37,6 @@ export interface SecondaryData {
 }
 
 const ConfigScreen = ({ navigation }: Props) => {
-  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
-
   const editionList = [
     { label: "9th: Eternal War", value: "9th: Eternal War" },
     { label: "Grand Tournament 2021", value: "Grand Tournament 2021" },
@@ -122,10 +120,6 @@ const ConfigScreen = ({ navigation }: Props) => {
     return dataArray;
   }
 
-  // function checkPlayerAndSecondaryConfig() {
-  //   if()
-  // }
-
   useEffect(() => {
     battleSizeData !== null && !battleSizeLoading && setBattleSize(Object.keys(battleSizeData)[0]);
   }, [edition, battleSizeData]);
@@ -141,12 +135,6 @@ const ConfigScreen = ({ navigation }: Props) => {
       setModeError(false);
     }
   }, [edition, battleSize, mode]);
-
-  // useEffect(() => {
-  //   if (configMode === "players") {
-  //     checkPlayerAndSecondaryConfig();
-  //   }
-  // });
 
   const handleNavigation = () => {
     setButtonLoading(true);

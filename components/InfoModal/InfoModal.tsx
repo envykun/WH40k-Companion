@@ -23,9 +23,6 @@ const InfoModal = ({ mission, secondaries, closeInfo, scrollTo, edition }: Props
 
   return (
     <View style={styles.container}>
-      <View style={styles.closeButton}>
-        <IconButton icon="close" onPress={closeInfo} color="#fff" size={36} />
-      </View>
       {mission && (
         <ScrollView contentContainerStyle={styles.scroll}>
           <MissionPaper mission={mission} onPress={undefined} image={getImage(mission, edition)} />
@@ -44,12 +41,7 @@ export default InfoModal;
 
 const styles = StyleSheet.create({
   container: {
-    alignSelf: "center",
+    flex: 1,
   },
-  scroll: { paddingVertical: 80 },
-  closeButton: {
-    position: "absolute",
-    top: 45,
-    right: -50,
-  },
+  scroll: { flex: 1 },
 });

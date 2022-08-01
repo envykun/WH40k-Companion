@@ -19,3 +19,10 @@
 - [ ] Responsive styling (Breapoints)
 - [x] Info Modal
 - [x] CP für 2 player
+- [ ] Missions from google sheets
+- [ ] Secondaries from google sheets
+- [ ] Save game history to google sheets
+- [ ] Game cache?
+- [ ] Disable automatic "Turn off screen"
+- [ ] Settings page (Darkmode, etc.)
+- [ ] FIX Automatic CP per round

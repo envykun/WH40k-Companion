@@ -5,6 +5,7 @@ import HistoryListItem from "../components/HistoryListItem/HistoryListItem";
 import Colors from "../constants/Colors";
 import { clearHistory, createHistoryJSON, setHistory, getHistory, GameHistory } from "../hooks/useFileSystem";
 import { Entypo } from "@expo/vector-icons";
+import fontSize from "../constants/Text";
 
 interface Props {
   navigation: any;
@@ -38,14 +39,16 @@ const HomeScreen = ({ navigation }: Props) => {
           />
         </View>
         <Text
-          style={{
-            fontSize: 42,
-            fontFamily: "roboto-regular",
-            color: Colors.dark.yellow,
-            textAlignVertical: "center",
-          }}
+          style={[
+            fontSize.large,
+            {
+              fontFamily: "roboto-regular",
+              color: Colors.dark.yellow,
+              textAlignVertical: "center",
+            },
+          ]}
         >
-          Warhammer 40k Companion
+          WH40k Companion
         </Text>
       </View>
       <View style={styles.bodyContent}>
@@ -92,12 +95,12 @@ const HomeScreen = ({ navigation }: Props) => {
         )}
       </View>
       <View style={styles.buttonContainer}>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, maxWidth: 180 }}>
           <Button mode="text" color="#C7B300" onPress={() => setShowClearHistoryDialog(true)}>
             Clear History
           </Button>
         </View>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, maxWidth: 180 }}>
           <Button
             mode="contained"
             color="#C7B300"
@@ -117,7 +120,7 @@ const HomeScreen = ({ navigation }: Props) => {
       <Dialog
         visible={showClearHistoryDialog}
         onDismiss={() => setShowClearHistoryDialog(false)}
-        style={{ minWidth: 350, maxWidth: "40%", alignSelf: "center" }}
+        style={{ minWidth: 350, alignSelf: "center", backgroundColor: "white" }}
       >
         <Dialog.Title>Warning!</Dialog.Title>
         <Dialog.Content>
@@ -155,9 +158,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     padding: 20,
     flexDirection: "row",
-    width: 650,
+    width: "100%",
+    justifyContent: "center",
   },
-  bodyContent: { flex: 1, width: "100%", maxWidth: 650 },
+  bodyContent: { flex: 1, width: "100%", paddingHorizontal: 12 },
   surface: {
     backgroundColor: "#1E1E1E",
     flex: 1,

@@ -65,10 +65,17 @@ const HistoryListItem = ({
           flexDirection: "row",
           flex: 1,
           alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
-        <Text>{date}</Text>
-        <Text style={{ marginLeft: 10 }}>{battleSize}</Text>
+        <View
+          style={{
+            flexDirection: "row",
+          }}
+        >
+          <Text>{date}</Text>
+          <Text style={{ marginLeft: 10 }}>{battleSize}</Text>
+        </View>
         <View style={styles.result}>
           {teamOneCodexTwo ? getCodexIcon(teamOneCodexTwo) : <View style={{ width: 30 }}></View>}
           {getCodexIcon(teamOneCodex)}
@@ -104,6 +111,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    flex: 1,
   },
 });

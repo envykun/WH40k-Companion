@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableHighlight, Image } from "react-native"
 import { Surface } from "react-native-paper";
 import { Feather } from "@expo/vector-icons";
 import { Mission } from "../../screens/ConfigScreen";
+import Layout from "../../constants/Layout";
 
 interface Props {
   mission: Mission;
@@ -71,7 +72,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginHorizontal: 8,
     position: "relative",
-    maxWidth: 600,
   },
   surfaceMarked: {
     backgroundColor: "#1E1E1E",
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginHorizontal: 8,
     position: "relative",
-    maxWidth: 600,
     borderWidth: 1,
     borderColor: "#C7B300",
   },
@@ -121,7 +120,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: "100%",
     justifyContent: "center",
-    maxHeight: 500,
+    maxHeight: Layout.window.width,
   },
   image: {
     width: "100%",
